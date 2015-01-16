@@ -14,6 +14,22 @@
             %strong= "Dev ID:"
             %br
             = @transaction.dev_id
+          %p
+            %strong= "Status:"
+            %br
+            = @transaction.tran_status
+          %p
+            %strong= "Tran Code:"
+            %br
+            = @transaction.tran_code
+          %p
+            %strong= "Receipt:"
+            %br
+            = @transaction.receipt_nbr
+          %p
+            %strong= "Amt Auth:"
+            %br
+            = @transaction.amt_auth
         .col-xs-12.col-md-6
           %p
             %strong= "Date:"
@@ -23,3 +39,19 @@
             %strong= "Cust ID:"
             %br
             = @transaction.custID
+          %p
+            %strong= "Error Code:"
+            %br
+            = @transaction.error_code
+          %p
+            %strong= "Card #:"
+            %br
+            = @transaction.card_nbr
+          %p
+            %strong= "Amt Req:"
+            %br
+            = @transaction.amt_req
+          %p
+            %strong= "Sec Tran Code:"
+            %br
+            = @transaction.sec_tran_code

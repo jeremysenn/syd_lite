@@ -15,3 +15,20 @@
  *= require_tree .
  *= require_self
  */
+
+.sortable th .current {
+  padding-right: 16px;
+  background-repeat: no-repeat;
+  background-position: right center;
+/*  background-color: #C0C0C0;*/
+/*  text-decoration:underline;*/
+  color: #B7410E;
+  border-bottom: 3px solid #B7410E;
+}
+.sortable th .asc {
+  background-image: url(up_arrow.gif);
+}
+
+.sortable th .desc {
+  background-image: url(down_arrow.gif);
+}

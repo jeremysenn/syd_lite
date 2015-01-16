@@ -1,0 +1,12 @@
+- model_class = Device
+.container
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title Device Details
+    .panel-body
+      .row-fluid
+        .col-xs-12.col-md-6
+          %p
+            %strong= "Dev ID:"
+            %br
+            = @device.id
