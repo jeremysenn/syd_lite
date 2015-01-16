@@ -1,0 +1,99 @@
+.navbar.navbar-default{ role: 'navigation' }
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{ type: 'button', data: { toggle: 'collapse', target: '.navbar-collapse' } }
+        %span.sr-only= t('.toggle_navigation')
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a{class: 'navbar-brand logo-nav', :href => root_path, :style => "color: #964b89"}
+        %i.fa.fa-mobile.fa-lg{:style => "color: #964b89"}
+        PicShare Party
+        -#
+          %i.fa.fa-glass
+          = image_tag('picshareparty-logo-horizontal.png')
+
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.dropdown{:class => params[:controller] == "events" ? "active" : ""}
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            %i.fa.fa-glass
+            My Events
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              %a{href: new_event_path} New Event
+            %li
+              %a{href: events_path} All Events
+          %li.dropdown{:class => params[:controller] == "guests" ? "active" : ""}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              %i.fa.fa-group
+              My Guests
+              %b.caret
+            %ul.dropdown-menu
+              -#
+                %li
+                  %a{href: new_guest_path} New Guest
+              %li
+                %a{href: guests_path} All Guests
+          %li{}
+            %a{href: '#support', "data-toggle" => "modal"}
+              %span.glyphicon.glyphicon-envelope
+              Support
+          
+        %li.dropdown{:class => ((current_page? welcome_how_it_works_path) or (current_page? welcome_about_path) or (params[:controller] == "blog_posts")) ? "active" : ""}
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            More
+            %b.caret
+          %ul.dropdown-menu
+            %li{:class => (current_page? welcome_how_it_works_path) ? "active" : ""}
+              %a{href: welcome_how_it_works_path}
+                %i.fa.fa-gears
+                How it Works
+            %li{:class => params[:controller] == "blog_posts" ? "active" : ""}
+              %a{href: blog_posts_path}
+                %span.glyphicon.glyphicon-align-justify
+                Blog
+            %li{:class => (current_page? welcome_about_path) ? "active" : ""}
+              %a{href: welcome_about_path}
+                %i.fa.fa-smile-o
+                About
+            -#
+              %li{:class => (current_page? welcome_pricing_path) ? "active" : ""}
+                %a{href: welcome_pricing_path}
+                  %i.fa.fa-dollar
+                  Pricing
+              %li{:class => (current_page? welcome_faq_path) ? "active" : ""}
+                %a{href: welcome_faq_path}
+                  %span.glyphicon.glyphicon-question-sign
+                  FAQ
+              
+      %ul.nav.navbar-nav.navbar-right
+        %li{:class => current_page?(edit_user_registration_path) ? "active" : ""}
+          %a{:href => edit_user_registration_path}
+            -#
+              %strong= current_user.email
+            %span.glyphicon.glyphicon-cog
+        %li
+          = link_to '<i class="fa fa-share"></i>'.html_safe, destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' }
+
+%div{:id => "support", :class => "modal fade", :style => "display:none;"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+        %h4
+          %span.glyphicon.glyphicon-envelope{:style => "color: #964b89"}
+          Support
+      .modal-body
+        = form_tag support_user_mailer_index_path, "data-remote" => true do
+          .form-group
+            = label_tag :email, "Email", class: "control-label"
+            = text_field_tag :email, params[:email], value: current_user.email, class: "form-control", placeholder: "Your email address"
+          .form-group
+            = label_tag :message, "Message", class: "control-label"
+            = text_area_tag :message, params[:message], class: "form-control", rows: 10, placeholder: "Tell us what's on your mind ..."
+          .modal-footer
+            = button_tag(:type => 'submit',  :class => 'btn btn-primary', data: { disable_with: "Please wait ..." }) do
+              Send
+            = link_to 'Close', '#', :class => 'btn btn-default', "data-dismiss" => "modal"

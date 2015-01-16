@@ -1,0 +1,53 @@
+.navbar.navbar-default{ role: 'navigation'}
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{ type: 'button', data: { toggle: 'collapse', target: '.navbar-collapse' } }
+        %span.sr-only= t('.toggle_navigation')
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a{class: 'navbar-brand', :href => root_path, :style => "color: #2563AB"}
+        %i.fa.fa-dollar
+        EZ Cash Web
+
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          %a{href: '#'}
+            Devices
+        %li{:class => params[:controller] == "transactions" ? "active" : ""}
+          %a{href: transactions_path}
+            Transactions
+        %li
+          %a{href: '#'}
+            Accounts
+        %li{}
+          %a{href: '#contact_us', "data-toggle" => "modal"}
+            %span.glyphicon.glyphicon-envelope
+            Contact Us
+      %ul.nav.navbar-nav.navbar-right
+        %a{href: '#', :class => "btn btn-default navbar-btn", :type => 'button'}
+          Log In
+          %span.glyphicon.glyphicon-lock
+        = link_to "Sign up", '#', :class => "btn btn-primary navbar-btn", :type => 'button'
+
+%div{:id => "contact_us", :class => "modal fade", :style => "display:none;"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+        %h4
+          %span.glyphicon.glyphicon-envelope{:style => "color: #964b89"}
+          Contact Us
+      .modal-body
+        = form_tag '/', "data-remote" => true do
+          .form-group
+            = label_tag :email, "Email", class: "control-label"
+            = text_field_tag :email, params[:email], class: "form-control", placeholder: "Your email address"
+          .form-group
+            = label_tag :message, "Message", class: "control-label"
+            = text_area_tag :message, params[:message], class: "form-control", rows: 10, placeholder: "Tell us what's on your mind ..."
+          .modal-footer
+            = button_tag(:type => 'submit',  :class => 'btn btn-primary', data: { disable_with: "Please wait ..." }) do
+              Send
+            = link_to 'Close', '#', :class => 'btn btn-default', "data-dismiss" => "modal"

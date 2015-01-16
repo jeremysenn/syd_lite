@@ -1,0 +1,25 @@
+- model_class = Transaction
+.container
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title Transaction Details
+    .panel-body
+      .row-fluid
+        .col-xs-12.col-md-6
+          %p
+            %strong= "TranID:"
+            %br
+            = @transaction.id
+          %p
+            %strong= "Dev ID:"
+            %br
+            = @transaction.dev_id
+        .col-xs-12.col-md-6
+          %p
+            %strong= "Date:"
+            %br
+            = @transaction.CreateDate
+          %p
+            %strong= "Cust ID:"
+            %br
+            = @transaction.custID

@@ -1,0 +1,38 @@
+-#
+  .jumbotron{style: 'background-color: #2563AB; color: white; margin-left: 0; margin-right: 0;'}
+    .container
+      %h3 
+        Transactions
+        .pull-right
+          All
+
+.container
+  %table.table.table-striped{"data-provides" => "rowlink"}
+    %thead
+      %tr
+        %th= "TranID"
+        %th= "Date"
+        %th= "Dev ID"
+        %th= "Cust ID"
+        %th= "Status"
+        %th= "Error Code"
+        %th= "Tran Code"
+        %th= "Card #"
+        %th= "Receipt"
+        %th= "Amt Req"
+        %th= "Amt Auth"
+    %tbody
+      - @transactions.each do |transaction|
+        %tr
+          %td= link_to transaction.id, transaction
+          %td= transaction.CreateDate
+          %td= transaction.dev_id
+          %td= transaction.custID
+          %td= transaction.tran_status
+          %td= transaction.error_code
+          %td= transaction.tran_code
+          %td= transaction.card_nbr
+          %td= transaction.receipt_nbr
+          %td= transaction.amt_req
+          %td= transaction.amt_auth
+            
