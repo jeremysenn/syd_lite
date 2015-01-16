@@ -2,12 +2,34 @@
   %table.table.table-striped.sortable{"data-provides" => "rowlink"}
     %thead
       %tr
-        %th= sortable 'dev_id', "Dev ID"
+        %th= "Dev ID"
+        %th= "Description"
+        %th= "State"
+        %th= "Bin 1"
+        %th= "Bin 2"
+        %th= "Bin 3"
+        %th= "Bin 4"
+        %th= "Bin 5"
+        %th= "Bin 6"
+        %th= "Bin 7"
+        %th= "Bin 8"
+        %th= "Remaining"
         
     %tbody
       - @devices.each do |device|
         %tr
           %td= link_to device.id, device
+          %td= device.description
+          %td= "Unknown"
+          %td= "Unknown"
+          %td= "Unknown"
+          %td= "Unknown"
+          %td= "Unknown"
+          %td= "Unknown"
+          %td= "Unknown"
+          %td= "Unknown"
+          %td= "Unknown"
+          %td= "Unknown"
           
   = paginate @devices
             

@@ -12,14 +12,14 @@
 
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li
-          %a{href: '#'}
+        %li{:class => params[:controller] == "devices" ? "active" : ""}
+          %a{href: devices_path}
             Devices
         %li{:class => params[:controller] == "transactions" ? "active" : ""}
           %a{href: transactions_path}
             Transactions
-        %li
-          %a{href: '#'}
+        %li{:class => params[:controller] == "accounts" ? "active" : ""}
+          %a{href: accounts_path}
             Accounts
         %li{}
           %a{href: '#contact_us', "data-toggle" => "modal"}
