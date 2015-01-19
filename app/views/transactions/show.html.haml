@@ -29,7 +29,7 @@
           %p
             %strong= "Amt Auth:"
             %br
-            = @transaction.amt_auth
+            = number_to_currency(@transaction.amt_auth)
         .col-xs-12.col-md-6
           %p
             %strong= "Date:"
@@ -50,7 +50,7 @@
           %p
             %strong= "Amt Req:"
             %br
-            = @transaction.amt_req
+            = number_to_currency(@transaction.amt_req)
           %p
             %strong= "Sec Tran Code:"
             %br

@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   helper_method :sort_column, :sort_direction
   
   def index
-    @transactions = Kaminari.paginate_array(Transaction.order(sort_column + ' ' + sort_direction).last(20)).page(params[:page]).per(15)
+    @transactions = Kaminari.paginate_array(Transaction.order(sort_column + ' ' + sort_direction)).page(params[:page]).per(15)
   end
   
   def show

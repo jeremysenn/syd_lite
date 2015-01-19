@@ -1,0 +1,25 @@
+- model_class = BillCount
+.container
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title Bill Count Details
+    .panel-body
+      .row-fluid
+        .col-xs-12.col-md-6
+          %p
+            %strong= "Host Start Count:"
+            %br
+            = @bill_count.host_start_count
+          %p
+            %strong= "Dev Start Count:"
+            %br
+            = @bill_count.dev_start_count
+        .col-xs-12.col-md-6
+          %p
+            %strong= "Host Cycle Count:"
+            %br
+            = @bill_count.host_cycle_count
+          %p
+            %strong= "Dev Cycle Count:"
+            %br
+            = @bill_count.dev_cycle_count

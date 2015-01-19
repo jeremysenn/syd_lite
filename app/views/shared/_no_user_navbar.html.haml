@@ -21,6 +21,9 @@
         %li{:class => params[:controller] == "accounts" ? "active" : ""}
           %a{href: accounts_path}
             Accounts
+        %li{:class => params[:controller] == "cards" ? "active" : ""}
+          %a{href: cards_path}
+            Cards
         %li{}
           %a{href: '#contact_us', "data-toggle" => "modal"}
             %span.glyphicon.glyphicon-envelope
