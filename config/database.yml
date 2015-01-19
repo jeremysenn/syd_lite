@@ -6,9 +6,6 @@
 development:
   adapter: sqlserver
   host: 71.41.52.58
-#  database: ezCash_Proto
-#  username: tps-rdserver\metal
-#  password: Copp3r24
   database: <%= ENV["EZCASH_DATABASE"] %>
   username: <%= ENV["EZCASH_USERNAME"] %>
   password: <%= ENV["EZCASH_PASSWORD"] %>
