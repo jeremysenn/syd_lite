@@ -29,7 +29,7 @@
           %td= device.bin_6
           %td= device.bin_7
           %td= device.bin_8
-          %td= "Unknown"
+          %td= number_to_currency(device.remaining)
           
   = paginate @devices
             

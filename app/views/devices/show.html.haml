@@ -10,8 +10,44 @@
             %strong= "Dev ID:"
             %br
             = @device.id
+          %p
+            %strong= "Bin 1:"
+            %br
+            = @device.bin_1
+          %p
+            %strong= "Bin 3:"
+            %br
+            = @device.bin_3
+          %p
+            %strong= "Bin 5:"
+            %br
+            = @device.bin_5
+          %p
+            %strong= "Bin 7:"
+            %br
+            = @device.bin_7
+          %p
+            %strong= "Remaining:"
+            %br
+            = number_to_currency(@device.remaining)
         .col-xs-12.col-md-6
           %p
             %strong= "Description:"
             %br
             = @device.description
+          %p
+            %strong= "Bin 2:"
+            %br
+            = @device.bin_2
+          %p
+            %strong= "Bin 4:"
+            %br
+            = @device.bin_4
+          %p
+            %strong= "Bin 6:"
+            %br
+            = @device.bin_6
+          %p
+            %strong= "Bin 8:"
+            %br
+            = @device.bin_8
