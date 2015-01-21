@@ -26,5 +26,5 @@
         %td= card.barcodeHash
         %td= card.card_seq
 
-= paginate @cards
+= paginate @cards, :param_name => "cards_page"
             

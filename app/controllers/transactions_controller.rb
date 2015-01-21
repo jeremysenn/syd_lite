@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   helper_method :transactions_sort_column, :transactions_sort_direction
   
   def index
-    @transactions = Kaminari.paginate_array(Transaction.order(transactions_sort_column + ' ' + transactions_sort_direction)).page(params[:transaction_page]).per(15)
+    @transactions = Kaminari.paginate_array(Transaction.order(transactions_sort_column + ' ' + transactions_sort_direction)).page(params[:transactions_page]).per(15)
     
     # Determine if we can eliminate any empty columns
     @error_code_column_count = @transactions.select { |result| result.error_code != "" }.select{ |result| result.error_code != nil }.count

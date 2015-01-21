@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   helper_method :sort_column, :sort_direction
   
   def index
-    @cards = Kaminari.paginate_array(Card.order(sort_column + ' ' + sort_direction)).page(params[:page]).per(20)
+    @cards = Kaminari.paginate_array(Card.order(sort_column + ' ' + sort_direction)).page(params[:cards_page]).per(20)
   end
   
   def show

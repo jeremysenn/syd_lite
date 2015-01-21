@@ -28,5 +28,5 @@
           %td= transaction.receipt_nbr
         %td= number_to_currency(transaction.amt_req)
         %td= number_to_currency(transaction.amt_auth)
-= paginate @transactions, :param_name => "transaction_page"
+= paginate @transactions, :param_name => "transactions_page"
             
