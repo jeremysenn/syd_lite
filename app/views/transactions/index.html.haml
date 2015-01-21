@@ -13,6 +13,7 @@
         %th= transactions_sortable 'receipt_nbr', "Receipt"
       %th= transactions_sortable 'amt_req', "Amt Req"
       %th= transactions_sortable 'amt_auth', "Amt Auth"
+      %th= "Images"
   %tbody
     - @transactions.each do |transaction|
       %tr
@@ -28,5 +29,18 @@
           %td= transaction.receipt_nbr
         %td= number_to_currency(transaction.amt_req)
         %td= number_to_currency(transaction.amt_auth)
+        %td
+          %a{href: "#transaction_#{transaction.id}_images", "data-toggle" => "modal"}
+            %i.fa.fa-picture-o
+      %div{id: "transaction_#{transaction.id}_images", :class => "modal fade", :style => "display:none;"}
+        .modal-dialog
+          .modal-content
+            .modal-header
+              = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+              %strong= "Transaction #{transaction.id}"
+            .modal-body
+              Transaction images
+            .modal-footer
+              = link_to 'Close', '#', :class => 'btn btn-primary', "data-dismiss" => "modal"
 = paginate @transactions, :param_name => "transactions_page"
             
