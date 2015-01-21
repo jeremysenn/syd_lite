@@ -11,6 +11,10 @@ class BillCount < ActiveRecord::Base
     host_start_count - host_cycle_count
   end
   
+  def denomination
+    Denom.find_by_dev_id_and_cassette_id(dev_id, cassette_id).denomination
+  end
+  
   def status_description
     case status
     when 0

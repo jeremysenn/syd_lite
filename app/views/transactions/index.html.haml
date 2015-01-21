@@ -1,4 +1,4 @@
-%table.table.table-striped.sortable{"data-provides" => "rowlink"}
+%table.table.table-striped.sortable
   %thead
     %tr
       %th= transactions_sortable 'tranID', "TranID"
@@ -20,9 +20,9 @@
         %td= transaction.CreateDate.strftime("%-m/%-d/%y %l:%M%p")
         -#
           %td= transaction.dev_id
-        %td= transaction.status_description
+        %td= link_to transaction.status_description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "#{transaction.status_long_description}"
         - if @error_code_column_count and @error_code_column_count > 0
-          %td= transaction.error_code_description
+          %td= link_to transaction.error_code_description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "#{transaction.error_code_long_description}"
         %td= transaction.tran_code
         - if @receipt_nbr_column_count and @receipt_nbr_column_count > 0
           %td= transaction.receipt_nbr

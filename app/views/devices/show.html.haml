@@ -3,7 +3,7 @@
   .panel.panel-primary
     .panel-heading
       %h3.panel-title
-        = "Device #{@device.id} Details"
+        = "Device #{@device.id}"
         .pull-right= @device.description
           
     .panel-body
@@ -20,7 +20,20 @@
         .tab-pane.active{:id => "transactions"}
           = render template: "transactions/index"
         .tab-pane{:id => "statuses"}
-          = render template: "dev_statuses/index"
+          .row-fluid
+            %br
+            %div.col-xs-12.col-md-6
+              .panel.panel-primary
+                .panel-heading
+                  %h3.panel-title
+                    = "ATMs"
+                = render template: "dev_statuses/index"
+            %div.col-xs-12.col-md-6
+              .panel.panel-primary
+                .panel-heading
+                  %h3.panel-title
+                    = "Cassettes"
+                = render partial: "cassettes"
         .tab-pane{:id => "cards"}
           .row-fluid
             = render template: "cards/index"
