@@ -4,11 +4,8 @@ Rails.application.routes.draw do
   
   resources :transactions
   resources :devices
-  resources :accounts
   resources :cards
-  resources :denoms
-  resources :bill_counts
-  resources :bill_hists
+  resources :dev_statuses
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'

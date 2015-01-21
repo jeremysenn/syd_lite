@@ -1,33 +1,32 @@
-.container
-  %table.table.table-striped.sortable{"data-provides" => "rowlink"}
-    %thead
-      %tr
-        %th= sortable 'tranID', "TranID"
-        %th= sortable 'CreateDate', "Date"
+%table.table.table-striped.sortable{"data-provides" => "rowlink"}
+  %thead
+    %tr
+      %th= transactions_sortable 'tranID', "TranID"
+      %th= transactions_sortable 'CreateDate', "Date"
+      -#
         %th= sortable 'dev_id', "Dev ID"
-        %th= sortable 'custID', "Cust ID"
-        %th= sortable 'tran_status', "Status"
-        %th= sortable 'error_code', "Error Code"
-        %th= sortable 'tran_code', "Tran Code"
-        %th= sortable 'card_nbr', "Card #"
-        %th= sortable 'receipt_nbr', "Receipt"
-        %th= sortable 'amt_req', "Amt Req"
-        %th= sortable 'amt_auth', "Amt Auth"
-        %th= sortable 'sec_tran_code', "Sec Tran Code"
-    %tbody
-      - @transactions.each do |transaction|
-        %tr
-          %td= link_to transaction.id, transaction
-          %td= transaction.CreateDate
+      %th= transactions_sortable 'tran_status', "Status"
+      - if @error_code_column_count and @error_code_column_count > 0
+        %th= transactions_sortable 'error_code', "Error Code"
+      %th= transactions_sortable 'tran_code', "Tran Code"
+      - if @receipt_nbr_column_count and @receipt_nbr_column_count > 0
+        %th= transactions_sortable 'receipt_nbr', "Receipt"
+      %th= transactions_sortable 'amt_req', "Amt Req"
+      %th= transactions_sortable 'amt_auth', "Amt Auth"
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= link_to transaction.id, transaction
+        %td= transaction.CreateDate.strftime("%-m/%-d/%y %l:%M%p")
+        -#
           %td= transaction.dev_id
-          %td= transaction.custID
-          %td= transaction.tran_status
+        %td= transaction.tran_status
+        - if @error_code_column_count and @error_code_column_count > 0
           %td= transaction.error_code
-          %td= transaction.tran_code
-          %td= transaction.card_nbr
+        %td= transaction.tran_code
+        - if @receipt_nbr_column_count and @receipt_nbr_column_count > 0
           %td= transaction.receipt_nbr
-          %td= number_to_currency(transaction.amt_req)
-          %td= number_to_currency(transaction.amt_auth)
-          %td= transaction.sec_tran_code
-  = paginate @transactions
+        %td= number_to_currency(transaction.amt_req)
+        %td= number_to_currency(transaction.amt_auth)
+= paginate @transactions, :param_name => "transaction_page"
             

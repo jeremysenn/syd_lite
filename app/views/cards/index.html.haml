@@ -1,33 +1,30 @@
-.container
-  %table.table.table-striped.table-hover.sortable{"data-provides" => "rowlink"}
-    %thead
+%table.table.table-striped.table-hover.sortable
+  %thead
+    %tr
+      %th= cards_sortable 'bank_id_nbr', "Bank ID"
+      %th= cards_sortable 'card_nbr', "Number"
+      %th= cards_sortable 'card_amt', "Total"
+      %th= cards_sortable 'avail_amt', "Available"
+      %th= cards_sortable 'card_status', "Status"
+      %th= cards_sortable 'issued_date', "Date Issued"
+      %th= cards_sortable 'last_activity_date', "Last Used"
+      %th= cards_sortable 'receipt_nbr', "Receipt"
+      %th= cards_sortable 'barcodeHash', "Barcode Hash"
+      %th= cards_sortable 'card_seq', "Sequence"
+
+  %tbody
+    - @cards.each do |card|
       %tr
-        %th= sortable 'bank_id_nbr', "Bank ID"
-        %th= sortable 'card_nbr', "Card Number"
-        %th= sortable 'dev_id', "Dev ID"
-        %th= sortable 'card_amt', "Total Amount"
-        %th= sortable 'avail_amt', "Available Amount"
-        %th= sortable 'card_status', "Status"
-        %th= sortable 'issued_date', "Date Issued"
-        %th= sortable 'last_activity_date', "Last Used"
-        %th= sortable 'receipt_nbr', "Receipt Number"
-        %th= sortable 'barcodeHash', "Barcode Hash"
-        %th= sortable 'card_seq', "Card Sequence"
-        
-    %tbody
-      - @cards.each do |card|
-        %tr
-          %td= card.bank_id_nbr.to_i
-          %td= link_to card.id, card
-          %td= card.dev_id
-          %td= number_to_currency(card.card_amt)
-          %td= number_to_currency(card.avail_amt)
-          %td= card.card_status
-          %td= card.issued_date
-          %td= card.last_activity_date
-          %td= card.receipt_nbr
-          %td= card.barcodeHash
-          %td= card.card_seq
-          
-  = paginate @cards
+        %td= card.bank_id_nbr.to_i
+        %td= card.id
+        %td= number_to_currency(card.card_amt)
+        %td= number_to_currency(card.avail_amt)
+        %td= card.card_status
+        %td= card.issued_date.strftime("%-m/%-d/%y %l:%M%p")
+        %td= card.last_activity_date.strftime("%-m/%-d/%y %l:%M%p")
+        %td= card.receipt_nbr
+        %td= card.barcodeHash
+        %td= card.card_seq
+
+= paginate @cards
             

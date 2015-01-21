@@ -8,22 +8,13 @@
         %span.icon-bar
       %a{class: 'navbar-brand', :href => root_path, :style => "color: #2563AB"}
         %i.fa.fa-dollar
-        EZ Cash Web
+        EZcash Web
 
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li{:class => params[:controller] == "devices" ? "active" : ""}
           %a{href: devices_path}
             Devices
-        %li{:class => params[:controller] == "transactions" ? "active" : ""}
-          %a{href: transactions_path}
-            Transactions
-        %li{:class => params[:controller] == "accounts" ? "active" : ""}
-          %a{href: accounts_path}
-            Accounts
-        %li{:class => params[:controller] == "cards" ? "active" : ""}
-          %a{href: cards_path}
-            Cards
         %li{}
           %a{href: '#contact_us', "data-toggle" => "modal"}
             %span.glyphicon.glyphicon-envelope

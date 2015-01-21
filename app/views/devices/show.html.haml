@@ -2,52 +2,48 @@
 .container
   .panel.panel-primary
     .panel-heading
-      %h3.panel-title Device Details
+      %h3.panel-title
+        = "Device #{@device.id} Details"
+        .pull-right= @device.description
+          
     .panel-body
-      .row-fluid
-        .col-xs-12.col-md-6
-          %p
-            %strong= "Dev ID:"
-            %br
-            = @device.id
-          %p
-            %strong= "Bin 1:"
-            %br
-            = @device.bin_1
-          %p
-            %strong= "Bin 3:"
-            %br
-            = @device.bin_3
-          %p
-            %strong= "Bin 5:"
-            %br
-            = @device.bin_5
-          %p
-            %strong= "Bin 7:"
-            %br
-            = @device.bin_7
-          %p
-            %strong= "Remaining:"
-            %br
-            = number_to_currency(@device.remaining)
-        .col-xs-12.col-md-6
-          %p
-            %strong= "Description:"
-            %br
-            = @device.description
-          %p
-            %strong= "Bin 2:"
-            %br
-            = @device.bin_2
-          %p
-            %strong= "Bin 4:"
-            %br
-            = @device.bin_4
-          %p
-            %strong= "Bin 6:"
-            %br
-            = @device.bin_6
-          %p
-            %strong= "Bin 8:"
-            %br
-            = @device.bin_8
+      %ul{class: "nav nav-tabs"}
+        %li.active{:role => "presentation"}
+          %a{:href => "#transactions", :data => {:toggle => "tab"}} Transactions
+        %li{:role => "presentation"}
+          %a{:href => "#statuses", :data => {:toggle => "tab"}} Statuses
+        %li{:role => "presentation"}
+          %a{:href => "#cards", :data => {:toggle => "tab"}} Cards
+        %li{:role => "presentation"}
+          %a{:href => "#cuts", :data => {:toggle => "tab"}} Cuts
+      .tab-content
+        .tab-pane.active{:id => "transactions"}
+          = render template: "transactions/index"
+        .tab-pane{:id => "statuses"}
+          = render template: "dev_statuses/index"
+        .tab-pane{:id => "cards"}
+          .row-fluid
+            = render template: "cards/index"
+        .tab-pane{:id => "cuts"}
+          .row-fluid
+            Cuts
+            %p
+              %strong= "Remaining:"
+              %br
+              = number_to_currency(@device.remaining)
+
+
+:javascript
+  //*** Remember the selected tab on page refresh ***
+  $(function() {
+    //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
+    $('a[data-toggle="tab"]').on('click', function (e) {
+      //save the latest tab; use cookies if you like 'em better:
+      localStorage.setItem('lastTab', $(e.target).attr('href'));
+    });
+    //go to the latest tab, if it exists:
+    var lastTab = localStorage.getItem('lastTab');
+    if (lastTab) {
+      $('a[href="'+lastTab+'"]').click();
+    }
+  });
