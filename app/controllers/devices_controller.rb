@@ -8,9 +8,10 @@ class DevicesController < ApplicationController
   
   def show
     @device = Device.find(params[:id])
-    @transactions = Kaminari.paginate_array(Transaction.where(dev_id: @device.id).order(transactions_sort_column + ' ' + transactions_sort_direction)).page(params[:transactions_page]).per(15)
-    @dev_statuses = Kaminari.paginate_array(DevStatus.where(dev_id: @device.id).order("date_time DESC")).page(params[:dev_statuses_page]).per(15)
-    @cards = Kaminari.paginate_array(Card.where(dev_id: @device.id).order(cards_sort_column + ' ' + cards_sort_direction)).page(params[:cards_page]).per(15)
+    @transactions = Kaminari.paginate_array(@device.transactions.order(transactions_sort_column + ' ' + transactions_sort_direction)).page(params[:transactions_page]).per(15)
+    @dev_statuses = Kaminari.paginate_array(@device.dev_statuses.order("date_time DESC")).page(params[:dev_statuses_page]).per(15)
+    @cards = Kaminari.paginate_array(@device.cards.order(cards_sort_column + ' ' + cards_sort_direction)).page(params[:cards_page]).per(15)
+    @bill_hists = Kaminari.paginate_array(@device.bill_hists.order("cut_dt DESC")).page(params[:bill_hists_page]).per(15)
     
     # Determine if we can eliminate any empty columns
     @error_code_column_count = @transactions.select { |result| result.error_code != "" }.select{ |result| result.error_code != nil }.count

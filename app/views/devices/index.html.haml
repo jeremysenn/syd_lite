@@ -3,7 +3,7 @@
     .panel-heading
       %h3.panel-title
         = "Cash Dispensers and ATMs"
-    %table.table.table-striped.sortable{"data-provides" => "rowlink"}
+    %table.table.table-striped.sortable
       %thead
         %tr
           %th= "Dev ID"
@@ -25,14 +25,15 @@
             %td= link_to device.id, device
             %td= device.description
             %td= "Unknown"
-            %td= device.bin_1
-            %td= device.bin_2
-            %td= device.bin_3
-            %td= device.bin_4
-            %td= device.bin_5
-            %td= device.bin_6
-            %td= device.bin_7
-            %td= device.bin_8
+            = render partial: 'bin_details', locals: {device: device}
+            -#
+              %td= device.bin_2_count
+              %td= device.bin_3_count
+              %td= device.bin_4_count
+              %td= device.bin_5_count
+              %td= device.bin_6_count
+              %td= device.bin_7_count
+              %td= device.bin_8_count
             %td= number_to_currency(device.remaining)
           
   = paginate @devices

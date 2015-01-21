@@ -1,7 +1,69 @@
 class Device < ActiveRecord::Base
   self.primary_key = 'dev_id'
   
-  def bin_1
+  #############################
+  #     Instance Methods      #
+  #############################
+  
+  def bill_counts
+    BillCount.where(dev_id: id)
+  end
+  
+  def bill_hists
+    BillHist.where(dev_id: id)
+  end
+  
+  def cards
+    Card.where(dev_id: id)
+  end
+  
+  def dev_statuses
+    DevStatus.where(dev_id: id)
+  end
+  
+  def transactions
+    Transaction.where(dev_id: id)
+  end
+  
+  def denoms
+    Denom.where(dev_id: id)
+  end
+  
+  ### Start - bill_count records ###
+  def bill_count_1
+    BillCount.find_by_dev_id_and_cassette_id(id, 1)
+  end
+  
+  def bill_count_2
+    BillCount.find_by_dev_id_and_cassette_id(id, 2)
+  end
+  
+  def bill_count_3
+    BillCount.find_by_dev_id_and_cassette_id(id, 3)
+  end
+  
+  def bill_count_4
+    BillCount.find_by_dev_id_and_cassette_id(id, 4)
+  end
+  
+  def bill_count_5
+    BillCount.find_by_dev_id_and_cassette_id(id, 5)
+  end
+  
+  def bill_count_6
+    BillCount.find_by_dev_id_and_cassette_id(id, 6)
+  end
+  
+  def bill_count_7
+    BillCount.find_by_dev_id_and_cassette_id(id, 7)
+  end
+  
+  def bill_count_8
+    BillCount.find_by_dev_id_and_cassette_id(id, 8)
+  end
+  ### End - bill_count records ###
+  
+  def bin_1_count
     bill_count = BillCount.find_by_dev_id_and_cassette_id(id, 1)
     unless bill_count.blank?
       bill_count.host_start_count - bill_count.host_cycle_count
@@ -10,7 +72,7 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def bin_2
+  def bin_2_count
     bill_count = BillCount.find_by_dev_id_and_cassette_id(id, 2)
     unless bill_count.blank?
       bill_count.host_start_count - bill_count.host_cycle_count
@@ -19,7 +81,7 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def bin_3
+  def bin_3_count
     bill_count = BillCount.find_by_dev_id_and_cassette_id(id, 3)
     unless bill_count.blank?
       bill_count.host_start_count - bill_count.host_cycle_count
@@ -28,7 +90,7 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def bin_4
+  def bin_4_count
     bill_count = BillCount.find_by_dev_id_and_cassette_id(id, 4)
     unless bill_count.blank?
       bill_count.host_start_count - bill_count.host_cycle_count
@@ -37,7 +99,7 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def bin_5
+  def bin_5_count
     bill_count = BillCount.find_by_dev_id_and_cassette_id(id, 5)
     unless bill_count.blank?
       bill_count.host_start_count - bill_count.host_cycle_count
@@ -46,7 +108,7 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def bin_6
+  def bin_6_count
     bill_count = BillCount.find_by_dev_id_and_cassette_id(id, 6)
     unless bill_count.blank?
       bill_count.host_start_count - bill_count.host_cycle_count
@@ -55,7 +117,7 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def bin_7
+  def bin_7_count
     bill_count = BillCount.find_by_dev_id_and_cassette_id(id, 7)
     unless bill_count.blank?
       bill_count.host_start_count - bill_count.host_cycle_count
@@ -64,7 +126,7 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def bin_8
+  def bin_8_count
     bill_count = BillCount.find_by_dev_id_and_cassette_id(id, 8)
     unless bill_count.blank?
       bill_count.host_start_count - bill_count.host_cycle_count
@@ -73,79 +135,90 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def bin_1_remaining
+  def bin_1_remaining # Total dollar amount remaining in bin/cassette 1
     denom = Denom.find_by_dev_id_and_cassette_id(id, 1)
-    if denom.blank? or bin_1.blank?
+    if denom.blank? or bin_1_count.blank?
       return 0
     else
-      return bin_1 * denom.denomination
+      return bin_1_count * denom.denomination
     end
   end
   
-  def bin_2_remaining
+  def bin_2_remaining # Total dollar amount remaining in bin/cassette 2
     denom = Denom.find_by_dev_id_and_cassette_id(id, 2)
-    if denom.blank? or bin_2.blank?
+    if denom.blank? or bin_2_count.blank?
       return 0
     else
-      return bin_2 * denom.denomination
+      return bin_2_count * denom.denomination
     end
   end
   
-  def bin_3_remaining
+  def bin_3_remaining # Total dollar amount remaining in bin/cassette 3
     denom = Denom.find_by_dev_id_and_cassette_id(id, 3)
-    if denom.blank? or bin_3.blank?
+    if denom.blank? or bin_3_count.blank?
       return 0
     else
-      return bin_3 * denom.denomination
+      return bin_3_count * denom.denomination
     end
   end
   
-  def bin_4_remaining
+  def bin_4_remaining # Total dollar amount remaining in bin/cassette 4
     denom = Denom.find_by_dev_id_and_cassette_id(id, 4)
-    if denom.blank? or bin_4.blank?
+    if denom.blank? or bin_4_count.blank?
       return 0
     else
-      return bin_4 * denom.denomination
+      return bin_4_count * denom.denomination
     end
   end
   
-  def bin_5_remaining
+  def bin_5_remaining # Total dollar amount remaining in bin/cassette 5
     denom = Denom.find_by_dev_id_and_cassette_id(id, 5)
-    if denom.blank? or bin_5.blank?
+    if denom.blank? or bin_5_count.blank?
       return 0
     else
-      return bin_5 * denom.denomination
+      return bin_5_count * denom.denomination
     end
   end
   
-  def bin_6_remaining
+  def bin_6_remaining # Total dollar amount remaining in bin/cassette 6
     denom = Denom.find_by_dev_id_and_cassette_id(id, 6)
-    if denom.blank? or bin_6.blank?
+    if denom.blank? or bin_6_count.blank?
       return 0
     else
-      return bin_6 * denom.denomination
+      return bin_6_count * denom.denomination
     end
   end
   
-  def bin_7_remaining
+  def bin_7_remaining # Total dollar amount remaining in bin/cassette 7
     denom = Denom.find_by_dev_id_and_cassette_id(id, 7)
-    if denom.blank? or bin_7.blank?
+    if denom.blank? or bin_7_count.blank?
       return 0
     else
-      return bin_7 * denom.denomination
+      return bin_7_count * denom.denomination
     end
   end
   
-  def bin_8_remaining
+  def bin_8_remaining # Total dollar amount remaining in bin/cassette 8
     denom = Denom.find_by_dev_id_and_cassette_id(id, 8)
-    if denom.blank? or bin_8.blank?
+    if denom.blank? or bin_8_count.blank?
       return 0
     else
-      return bin_8 * denom.denomination
+      return bin_8_count * denom.denomination
     end
   end
   
-  def remaining
-    return bin_1_remaining + bin_2_remaining + bin_3_remaining + bin_4_remaining + bin_5_remaining + bin_6_remaining + bin_7_remaining + bin_8_remaining
+  def remaining # Total dollar amount remaining in this Device/ATM
+    total = 0
+    bill_counts.each do |bill_count|
+      denoms.where(cassette_id: bill_count.cassette_id).each do |denom|
+        total = total + (bill_count.count * denom.denomination)
+      end
+    end
+    return total
+#    return bin_1_remaining + bin_2_remaining + bin_3_remaining + bin_4_remaining + bin_5_remaining + bin_6_remaining + bin_7_remaining + bin_8_remaining
   end
+  
+  #############################
+  #     Class Methods      #
+  #############################
 end

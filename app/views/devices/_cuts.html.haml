@@ -1,0 +1,19 @@
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th= "Cut Date"
+      %th= "Old Start"
+      %th= "New Start"
+      %th= "Cassette ID"
+      %th= "Denomination"
+
+  %tbody
+    - @bill_hists.each do |bill_hist|
+      %tr
+        %td= bill_hist.cut_dt.strftime("%-m/%-d/%y %l:%M%p")
+        %td= bill_hist.old_start
+        %td= bill_hist.new_start
+        %td= bill_hist.cassette_id
+        %td= number_to_currency(bill_hist.denomination)
+
+= paginate @bill_hists, :param_name => "bill_hists_page"

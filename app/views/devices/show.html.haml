@@ -26,11 +26,8 @@
             = render template: "cards/index"
         .tab-pane{:id => "cuts"}
           .row-fluid
-            Cuts
-            %p
-              %strong= "Remaining:"
-              %br
-              = number_to_currency(@device.remaining)
+            = render partial: 'cuts'
+            
 
 
 :javascript
