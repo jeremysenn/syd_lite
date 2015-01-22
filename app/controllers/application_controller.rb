@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   private
   def current_user
-    @current_user ||= UserRole.find(session[:user_name]) if session[:user_name]
+    @current_user ||= UserRole.find_by_user_name(session[:user_name]) if session[:user_name]
   end
   helper_method :current_user
 end
