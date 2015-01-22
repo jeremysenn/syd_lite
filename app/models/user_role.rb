@@ -10,7 +10,8 @@ class UserRole < ActiveRecord::Base
   def self.authenticate(login, pass)
     user = find_by_user_name(login)
 #    return user if user && user.is_active? && user.password_hash == user.encrypt_password(pass)
-    return user if user && user.password_hash == user.encrypt_password(pass)
+#    return user if user && user.password_hash == user.encrypt_password(pass)
+    return user if user && user.password == user.encrypt_password(pass)
   end
   
   def encrypt_password(pass)
