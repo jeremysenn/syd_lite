@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 #        user.generate_token(:auth_token)
 #        user.save
 #      end
-      session[:user_id] = user.id # Store user.id as a session variable.
+      session[:user_name] = user.user_name # Store user.user_name as a session variable.
 #      if params[:remember_me]
 #        cookies.permanent[:auth_token] = user.auth_token # Store auth_token in a permanent cookie so can remember next time.
 #      else
