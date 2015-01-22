@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = UserRole.authenticate(params[:login], params[:password])
+    user = UserRole.authenticate(params[:user_name], params[:password])
     if user
 #      if user.user_signed_in? # User already signed in, so create new :auth_token
 #        user.generate_token(:auth_token)
