@@ -19,7 +19,8 @@ class SessionsController < ApplicationController
 #      else
 #        cookies[:auth_token] = user.auth_token # Store auth_token in a temporary cookie.
 #      end
-      redirect_to_target_or_default root_url, :notice => "You have been logged in."
+#      redirect_to_target_or_default root_url, :notice => "You have been logged in."
+      redirect_to root_url, :notice => "You have been logged in."
     else
       flash.now[:error] = "Invalid username or password, or user has been deactivated."
       render :action => 'new'
