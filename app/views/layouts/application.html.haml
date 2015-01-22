@@ -7,7 +7,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = render 'shared/no_user_navbar'
+    - unless current_user.blank?
+      = render 'shared/navbar'
+    - else
+      = render 'shared/no_usernavbar'
+    = render 'layouts/messages'
+    =# flash_messages
     = yield
     = render 'shared/footer'
-    = flash_messages
+    
