@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :devices
   resources :cards
   resources :dev_statuses
+  resources :sessions
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
