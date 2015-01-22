@@ -43,6 +43,9 @@ gem 'twbs_sass_rails'
 # Use Unicorn as the app server
 gem 'unicorn'
 
+# Password hashing
+gem 'bcrypt-ruby'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
