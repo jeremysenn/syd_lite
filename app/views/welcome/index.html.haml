@@ -1,5 +1,6 @@
 .jumbotron
   .container
+    = "session user id: #{session[:user_id]}"
     - unless current_user.blank?
       %h1.text-center{ :style => "color: #2563AB"}
         %i.fa.fa-dollar
