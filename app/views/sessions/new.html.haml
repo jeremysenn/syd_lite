@@ -5,7 +5,7 @@
     = form_tag sessions_path, class: 'form-horizontal' do
       .row.form-group
         %div{:class => "col-sm-8"}
-          %p= text_field_tag :username, params[:username], :class => "form-control", :placeholder => "Username", :autofocus => true
+          %p= text_field_tag :user_name, params[:username], :class => "form-control", :placeholder => "Username", :autofocus => true
           =# f.text_field :username, :autofocus => true, :placeholder => "Username", :class => "form-control"
       .row.form-group
         %div{:class => "col-sm-8"}
