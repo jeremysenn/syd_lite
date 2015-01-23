@@ -17,7 +17,7 @@
   %tbody
     - @transactions.each do |transaction|
       %tr
-        %td= link_to transaction.id, transaction
+        %td= transaction.id
         %td= transaction.CreateDate.strftime("%-m/%-d/%y %l:%M%p")
         -#
           %td= transaction.dev_id
