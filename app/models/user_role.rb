@@ -9,13 +9,17 @@ class UserRole < ActiveRecord::Base
 
   def self.authenticate(login, pass)
     user = find_by_user_name(login)
+    return user if user && user.pwd_hash == user.md5_encrypt_password(pass)
 #    return user if user && user.is_active? && user.password_hash == user.encrypt_password(pass)
 #    return user if user && user.password_hash == user.encrypt_password(pass)
-    return user if user #&& user.pwd_hash == user.encrypt_password(pass)
   end
   
   def encrypt_password(pass)
     BCrypt::Engine.hash_secret(pass, password_salt)
+  end
+  
+  def md5_encrypt_password(pass)
+    Digest::MD5.hexdigest(pass)
   end
   
 end
