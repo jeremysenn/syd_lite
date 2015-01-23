@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+  before_filter :login_required
+  
   helper_method :transactions_sort_column, :transactions_sort_direction
   
   def index

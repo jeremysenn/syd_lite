@@ -1,4 +1,6 @@
 class DevicesController < ApplicationController
+  before_filter :login_required
+  
   helper_method :transactions_sort_column, :transactions_sort_direction # For sorting device's transactions
   helper_method :cards_sort_column, :cards_sort_direction # For sorting device's cards
   helper_method :devices_sort_column, :devices_sort_direction # For sorting devices

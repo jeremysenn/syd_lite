@@ -8,4 +8,17 @@ class ApplicationController < ActionController::Base
     @current_user ||= UserRole.find_by_user_name(session[:user_name]) if session[:user_name]
   end
   helper_method :current_user
+  
+  def logged_in?
+    current_user
+  end
+  
+  def login_required
+    unless logged_in?
+#      store_target_location
+      redirect_to login_url, :alert => "You must first log in or sign up before accessing this page."
+    else
+      session[:user_id] = current_user.id
+    end
+  end
 end
