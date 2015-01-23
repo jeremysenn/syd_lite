@@ -20,20 +20,7 @@
         .tab-pane.active{:id => "transactions"}
           = render template: "transactions/index"
         .tab-pane{:id => "statuses"}
-          .row-fluid
-            %br
-            %div.col-xs-12.col-md-6
-              .panel.panel-primary
-                .panel-heading
-                  %h3.panel-title
-                    = "ATMs"
-                = render template: "dev_statuses/index"
-            %div.col-xs-12.col-md-6
-              .panel.panel-primary
-                .panel-heading
-                  %h3.panel-title
-                    = "Cassettes"
-                = render partial: "cassettes"
+          = render partial: "statuses"
         .tab-pane{:id => "accounts"}
           .row-fluid
             = render template: "cards/index"
