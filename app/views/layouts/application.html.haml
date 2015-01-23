@@ -10,7 +10,7 @@
     - unless current_user.blank?
       = render 'shared/navbar'
     - else
-      = render 'shared/no_usernavbar'
+      = render 'shared/no_user_navbar'
     = render 'layouts/messages'
     = yield
     = render 'shared/footer'
