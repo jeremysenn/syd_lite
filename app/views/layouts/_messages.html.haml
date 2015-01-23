@@ -3,4 +3,4 @@
   - if msg.is_a?(String)
     %div{class: "alert alert-#{msg_type == :notice ? "success" : "danger"}"}
       %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
-      = content_tag :div, msg, :id => "flash_#{name}"
+      = content_tag :div, msg, :id => "flash_#{msg_type}"
