@@ -6,11 +6,20 @@ class DevicesController < ApplicationController
   helper_method :devices_sort_column, :devices_sort_direction # For sorting devices
   
   def index
-    unless devices_sort_column == 'remaining'
-      @devices = Kaminari.paginate_array(Device.order(devices_sort_column + ' ' + devices_sort_direction)).page(params[:page]).per(20)
-    else
-      @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining)).page(params[:page]).per(20) if devices_sort_direction == 'asc'
-      @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining).reverse).page(params[:page]).per(20) if devices_sort_direction == 'desc'
+    if current_user.dev_group.blank? and current_user.dev_site.blank? # No device limitations
+      unless devices_sort_column == 'remaining'
+        @devices = Kaminari.paginate_array(Device.order(devices_sort_column + ' ' + devices_sort_direction)).page(params[:page]).per(20)
+      else
+        @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining)).page(params[:page]).per(20) if devices_sort_direction == 'asc'
+        @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining).reverse).page(params[:page]).per(20) if devices_sort_direction == 'desc'
+      end
+    else # Limit devices by user's dev_group and dev_site
+      unless devices_sort_column == 'remaining'
+        @devices = Kaminari.paginate_array(Device.where("dev_group = #{current_user.dev_group} OR dev_site = #{current_user.dev_site}").order(devices_sort_column + ' ' + devices_sort_direction)).page(params[:page]).per(20)
+      else
+        @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining)).page(params[:page]).per(20) if devices_sort_direction == 'asc'
+        @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining).reverse).page(params[:page]).per(20) if devices_sort_direction == 'desc'
+      end
     end
   end
   
@@ -18,8 +27,8 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
     @transactions = Kaminari.paginate_array(@device.transactions.order(transactions_sort_column + ' ' + transactions_sort_direction)).page(params[:transactions_page]).per(15)
     @dev_statuses = Kaminari.paginate_array(@device.dev_statuses.order("date_time DESC")).page(params[:dev_statuses_page]).per(10)
-    @cards = Kaminari.paginate_array(@device.cards.order(cards_sort_column + ' ' + cards_sort_direction)).page(params[:cards_page]).per(15)
-    @bill_hists = Kaminari.paginate_array(@device.bill_hists.order("cut_dt DESC")).page(params[:bill_hists_page]).per(15)
+    @cards = Kaminari.paginate_array(@device.cards.order(cards_sort_column + ' ' + cards_sort_direction)).page(params[:cards_page]).per(10)
+    @bill_hists = Kaminari.paginate_array(@device.bill_hists.order("cut_dt DESC")).page(params[:bill_hists_page]).per(10)
     
     # Determine if we can eliminate any empty columns
     @error_code_column_count = @transactions.select { |result| result.error_code != "" }.select{ |result| result.error_code != nil }.count
