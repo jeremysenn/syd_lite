@@ -3,7 +3,7 @@
   .panel.panel-primary
     .panel-heading
       %h3.panel-title
-        = "Device #{@device.id}"
+        = "Device #{@device.id} - #{@device.online}"
         .pull-right= @device.description
           
     .panel-body
@@ -13,7 +13,7 @@
         %li{:role => "presentation"}
           %a{:href => "#statuses", :data => {:toggle => "tab"}} Statuses
         %li{:role => "presentation"}
-          %a{:href => "#cards", :data => {:toggle => "tab"}} Cards
+          %a{:href => "#accounts", :data => {:toggle => "tab"}} Accounts
         %li{:role => "presentation"}
           %a{:href => "#cuts", :data => {:toggle => "tab"}} Cuts
       .tab-content
@@ -34,7 +34,7 @@
                   %h3.panel-title
                     = "Cassettes"
                 = render partial: "cassettes"
-        .tab-pane{:id => "cards"}
+        .tab-pane{:id => "accounts"}
           .row-fluid
             = render template: "cards/index"
         .tab-pane{:id => "cuts"}

@@ -17,9 +17,10 @@
             Devices
         %li{}
           %a{href: '#contact_us', "data-toggle" => "modal"}
-            %span.glyphicon.glyphicon-envelope
-            Contact Us
+            Contact
       %ul.nav.navbar-nav.navbar-right
+        Signed in as
+        %strong= "#{current_user.user_name}"
         %a{href: logout_path, :class => "btn btn-default navbar-btn", :type => 'button', :confirm => "Are you sure you want to log out?", :title => "Log out"}
           Log Out
 

@@ -7,7 +7,7 @@
         %th= sortable 'dev_id', "Dev ID"
       %th= transactions_sortable 'tran_status', "Status"
       - if @error_code_column_count and @error_code_column_count > 0
-        %th= transactions_sortable 'error_code', "Return Code"
+        %th= transactions_sortable 'error_code', "Error Code"
       %th= transactions_sortable 'tran_code', "Tran Code"
       - if @receipt_nbr_column_count and @receipt_nbr_column_count > 0
         %th= transactions_sortable 'receipt_nbr', "Receipt"
@@ -23,7 +23,10 @@
           %td= transaction.dev_id
         %td= link_to transaction.status_description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "#{transaction.status_long_description}"
         - if @error_code_column_count and @error_code_column_count > 0
-          %td= link_to transaction.error_code_description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "#{transaction.error_code_long_description}"
+          - unless transaction.error_code_description == 'Success'
+            %td= link_to transaction.error_code_description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "#{transaction.error_code_long_description}"
+          - else
+            %td
         %td= transaction.tran_code
         - if @receipt_nbr_column_count and @receipt_nbr_column_count > 0
           %td= transaction.receipt_nbr

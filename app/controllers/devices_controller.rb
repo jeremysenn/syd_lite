@@ -1,9 +1,15 @@
 class DevicesController < ApplicationController
   helper_method :transactions_sort_column, :transactions_sort_direction # For sorting device's transactions
   helper_method :cards_sort_column, :cards_sort_direction # For sorting device's cards
+  helper_method :devices_sort_column, :devices_sort_direction # For sorting devices
   
   def index
-    @devices = Kaminari.paginate_array(Device.all).page(params[:page]).per(20)
+    unless devices_sort_column == 'remaining'
+      @devices = Kaminari.paginate_array(Device.order(devices_sort_column + ' ' + devices_sort_direction)).page(params[:page]).per(20)
+    else
+      @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining)).page(params[:page]).per(20) if devices_sort_direction == 'asc'
+      @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining).reverse).page(params[:page]).per(20) if devices_sort_direction == 'desc'
+    end
   end
   
   def show
@@ -38,6 +44,16 @@ class DevicesController < ApplicationController
     ### Secure the cards sort column name ###
     def cards_sort_column
       ["card_nbr", "bank_id_nbr", "dev_id", "card_amt", "avail_amt", "card_status", "issued_date", "last_activity_date", "receipt_nbr", "barcodeHash", "card_seq"].include?(params[:cards_sort]) ? params[:cards_sort] : "last_activity_date"
+    end
+    
+    ### Secure the devices sort direction ###
+    def devices_sort_direction
+      %w[asc desc].include?(params[:devices_direction]) ?  params[:devices_direction] : "asc"
+    end
+
+    ### Secure the devices sort column name ###
+    def devices_sort_column
+      ["dev_id", "description", "online", "remaining"].include?(params[:devices_sort]) ? params[:devices_sort] : "dev_id"
     end
     
 end

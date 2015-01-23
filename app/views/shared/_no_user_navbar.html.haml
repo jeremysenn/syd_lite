@@ -14,7 +14,7 @@
       %ul.nav.navbar-nav
         %li{}
           %a{href: '#contact_us', "data-toggle" => "modal"}
-            Contact Us
+            Contact
       %ul.nav.navbar-nav.navbar-right
         %a{href: login_path, :class => "btn btn-primary navbar-btn", :type => 'button'}
           Log In
@@ -26,7 +26,6 @@
       .modal-header
         = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
         %h4
-          %span.glyphicon.glyphicon-envelope{:style => "color: #964b89"}
           Contact Us
       .modal-body
         = form_tag '/', "data-remote" => true do

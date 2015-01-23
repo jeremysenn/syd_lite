@@ -4,4 +4,4 @@ jQuery ->
   $("[data-toggle='tooltip']").tooltip()
 
   # Uncomment the following line to enable popovers
-  # $("[data-toggle='popover']").popover()
+  $("[data-toggle='popover']").popover()

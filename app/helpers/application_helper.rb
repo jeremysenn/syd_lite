@@ -14,6 +14,13 @@ module ApplicationHelper
     link_to title, params.merge(:cards_sort => column, :cards_direction => direction, :page => nil), {:class => css_class}
   end
   
+  def devices_sortable(column, title = nil)
+    title ||= column.titleize
+    css_class = (column == devices_sort_column) ? "current #{devices_sort_direction}" : nil
+    direction = (column == devices_sort_column && devices_sort_direction == "asc") ? "desc" : "asc"
+    link_to title, params.merge(:devices_sort => column, :devices_direction => direction, :page => nil), {:class => css_class}
+  end
+  
   def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
   end
