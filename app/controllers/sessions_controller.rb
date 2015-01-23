@@ -13,12 +13,16 @@ class SessionsController < ApplicationController
 #        user.generate_token(:auth_token)
 #        user.save
 #      end
-      session[:user_name] = user.user_name # Store user.user_name as a session variable.
-#      if params[:remember_me]
+#      session[:user_name] = user.user_name # Store user.user_name as a session variable.
+
+      ### Need to change this to use auth_token once Paul adds auth_token column to user_roles table ###
+      if params[:remember_me]
+        cookies.permanent[:user_name] = user.user_name # Store user_name in a permanent cookie so can remember next time.
 #        cookies.permanent[:auth_token] = user.auth_token # Store auth_token in a permanent cookie so can remember next time.
-#      else
+      else
+        cookies[:user_name] = user.user_name # Store user_name in a temporary cookie.
 #        cookies[:auth_token] = user.auth_token # Store auth_token in a temporary cookie.
-#      end
+      end
 #      redirect_to_target_or_default root_url, :notice => "You have been logged in."
       redirect_to root_url, :notice => "You have been logged in."
     else
@@ -28,8 +32,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_name] = nil
-#    cookies.delete(:auth_token)
+#    session[:user_name] = nil
+    cookies.delete(:user_name)
     redirect_to root_url, :notice => "You have been logged out."
   end
 
