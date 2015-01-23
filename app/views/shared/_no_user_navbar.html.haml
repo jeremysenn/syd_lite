@@ -12,18 +12,13 @@
 
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li{:class => params[:controller] == "devices" ? "active" : ""}
-          %a{href: devices_path}
-            Devices
         %li{}
           %a{href: '#contact_us', "data-toggle" => "modal"}
-            %span.glyphicon.glyphicon-envelope
             Contact Us
       %ul.nav.navbar-nav.navbar-right
-        %a{href: '#', :class => "btn btn-default navbar-btn", :type => 'button'}
+        %a{href: login_path, :class => "btn btn-default navbar-btn", :type => 'button'}
           Log In
-          %span.glyphicon.glyphicon-lock
-        = link_to "Sign up", '#', :class => "btn btn-primary navbar-btn", :type => 'button'
+        =# link_to "Sign up", '#', :class => "btn btn-primary navbar-btn", :type => 'button'
 
 %div{:id => "contact_us", :class => "modal fade", :style => "display:none;"}
   .modal-dialog

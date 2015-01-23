@@ -20,10 +20,7 @@
             %span.glyphicon.glyphicon-envelope
             Contact Us
       %ul.nav.navbar-nav.navbar-right
-        %a{href: '#', :class => "btn btn-default navbar-btn", :type => 'button'}
-          Log In
-          %span.glyphicon.glyphicon-lock
-        = link_to "Sign up", '#', :class => "btn btn-primary navbar-btn", :type => 'button'
+        %a{href: logout_path, :class => "btn btn-default navbar-btn", :type => 'button', :confirm => "Are you sure you want to log out?", :title => "Log out"}
 
 %div{:id => "contact_us", :class => "modal fade", :style => "display:none;"}
   .modal-dialog
