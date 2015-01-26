@@ -15,6 +15,30 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
   end
   
+  def send_image
+    require 'open-uri'
+    image = Image.find(params[:id])
+    uri = URI.parse("http://#{ENV['MIDDLE_TIER_API_HOST']}/images/#{params[:id]}/jpeg_image")
+    file = open(uri, :http_basic_authentication => ["#{ENV['MIDDLE_TIER_API_USERNAME']}", "#{ENV['MIDDLE_TIER_API_PASSWORD']}"])
+    begin
+      send_data file.read, :type => file.content_type, :disposition => 'inline'
+    ensure
+       file.close
+    end
+  end
+  
+  def send_preview
+    require 'open-uri'
+    image = Image.find(params[:id])
+    uri = URI.parse("http://#{ENV['MIDDLE_TIER_API_HOST']}/images/#{params[:id]}/preview")
+    file = open(uri, :http_basic_authentication => ["#{ENV['MIDDLE_TIER_API_USERNAME']}", "#{ENV['MIDDLE_TIER_API_PASSWORD']}"])
+    begin
+      send_data file.read, :type => file.content_type, :disposition => 'inline'
+    ensure
+       file.close
+    end
+  end
+  
   private
 
     ### Secure the sort direction ###

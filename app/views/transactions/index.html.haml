@@ -33,17 +33,31 @@
         %td= number_to_currency(transaction.amt_req)
         %td= number_to_currency(transaction.amt_auth)
         %td
-          %a{href: "#transaction_#{transaction.id}_images", "data-toggle" => "modal"}
-            %i.fa.fa-picture-o
-      %div{id: "transaction_#{transaction.id}_images", :class => "modal fade", :style => "display:none;"}
-        .modal-dialog
-          .modal-content
-            .modal-header
-              = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
-              %strong= "Transaction #{transaction.id}"
-            .modal-body
-              Transaction images
-            .modal-footer
-              = link_to 'Close', '#', :class => 'btn btn-primary', "data-dismiss" => "modal"
+          - unless transaction.images.blank?
+            %a{href: "#transaction_#{transaction.id}_images", "data-toggle" => "modal"}
+              %i.fa.fa-picture-o
+            %div{id: "transaction_#{transaction.id}_images", :class => "modal fade", :style => "display:none;"}
+              .modal-dialog.modal-sm
+                .modal-content
+                  .modal-header
+                    = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+                    %strong= "Transaction #{transaction.id}"
+                  .modal-body
+                    - transaction.images.each do |image|
+                      %div.row
+                        .col-xs-12.col-md-12
+                          %a.thumbnail{:href => "http://#{ENV['SCRAP_YARD_DOG_COMPANY_NAME']}:#{ENV['SCRAP_YARD_DOG_COMPANY_ID']}@#{ENV['SCRAP_YARD_DOG_HOST']}/image_datas/multi_transaction_search?tranids=#{transaction.id}", 
+                            :target => "_blank", :title => "Open in Scrap Yard Dog"}
+                            %img{:alt => image['capture_seq_nbr'], :src => send_preview_transaction_path(image['capture_seq_nbr'])}
+                    -#
+                      %ul.thumbnails
+                        - transaction.images.each do |image|
+                          %p= "Capture Sequence Number: #{image['capture_seq_nbr']} | Ticket Number: #{image['ticket_nbr']}"
+                          %p= link_to image_tag(send_preview_transaction_path(image['capture_seq_nbr']), class: 'thumbnail'), '#'
+                  .modal-footer
+                    = link_to 'Close', '#', :class => 'btn btn-primary', "data-dismiss" => "modal"
+          - else
+            None
+      
 = paginate @transactions, :param_name => "transactions_page"
             

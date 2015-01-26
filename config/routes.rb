@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   
   resources :devices
-#  resources :transactions
+  resources :transactions do
+    member do
+      get 'send_image'
+      get 'send_preview'
+    end
+  end
 #  resources :cards
 #  resources :dev_statuses
 

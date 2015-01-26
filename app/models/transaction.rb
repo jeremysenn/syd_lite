@@ -43,6 +43,15 @@ class Transaction < ActiveRecord::Base
     end
   end
   
+  def images
+    images = Image.get(:ransack_search, :q => {tranid_eq: tranID})
+    unless images.blank?
+      return images
+    else
+      return nil
+    end
+  end
+  
   #############################
   #     Class Methods      #
   #############################

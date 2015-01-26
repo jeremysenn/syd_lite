@@ -43,6 +43,9 @@ gem 'twbs_sass_rails'
 # Use Unicorn as the app server
 gem 'unicorn'
 
+# Use Active Resource for connecting to SYD Middle Tier
+gem 'activeresource', :require => 'active_resource' # https://github.com/rails/activeresource
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
