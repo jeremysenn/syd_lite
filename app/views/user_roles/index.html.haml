@@ -1,0 +1,17 @@
+%table.table.table-striped.table-hover{"data-provides" => "rowlink"}
+  %thead
+    %tr
+      %th= "User Name"
+      %th= "Permissions"
+      %th= "Dev Group"
+      %th= "Dev Site"
+
+  %tbody
+    - @user_roles.each do |user_role|
+      %tr
+        %td= link_to user_role.user_name, user_role
+        %td
+          = user_role.role_permissions.each.map{ |rp| rp.ez_permission_description.Description }.join(', ')
+        %td= user_role.dev_group.present? ? user_role.dev_group : 'None'
+        %td= user_role.dev_site.present? ? user_role.dev_site : 'None'
+        

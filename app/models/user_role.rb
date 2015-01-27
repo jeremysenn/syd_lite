@@ -22,4 +22,8 @@ class UserRole < ActiveRecord::Base
     Digest::MD5.hexdigest(pass)
   end
   
+  def role_permissions
+    RolePermission.where(RoleID: user_role_index)
+  end
+  
 end
