@@ -5,6 +5,14 @@ class Device < ActiveRecord::Base
   #     Instance Methods      #
   #############################
   
+  def inactive?
+    unless inactive_flag.blank?
+      inactive_flag > 0
+    else
+      return false
+    end
+  end
+  
   def bill_counts
     BillCount.where(dev_id: id)
   end
