@@ -24,51 +24,49 @@
           %th= devices_sortable 'remaining', "Remaining"
       = content_tag :tbody, id: "devices", data: {url: devices_url } do
         = render @devices
-
-%hr
-%hr
-
-  .panel.panel-primary
-    .panel-heading
-      %h3.panel-title
-        = "Cash Dispensers and ATMs"
-    %table.table.table-striped.sortable
-      %thead
-        %tr
-          %th= devices_sortable 'dev_id', "Dev ID"
-          %th= devices_sortable 'description', "Description"
-          %th= devices_sortable 'online', "State"
-          %th= "Status"
-          %th= "Bin 1"
-          %th= "Bin 2"
-          %th= "Bin 3"
-          %th= "Bin 4"
-          %th= "Bin 5"
-          %th= "Bin 6"
-          %th= "Bin 7"
-          %th= "Bin 8"
-          %th= devices_sortable 'remaining', "Remaining"
-      %tbody
-        - @devices.each do |device|
-          %tr{:class => device.inactive? ? "info" : ""}
-            %td= link_to device.id, device
-            - if (device.inactive?)
-              %td= link_to device.description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "Device is inactive and not in production. EZCash will not drive this ATM, and it is not counted toward licensed devices."
-            - else
-              %td= device.description
-            %td= device.online.present? ? device_state_descriptions[device.online] : ''
-            %td
-              %a.btn.btn-xs.btn-danger{"data-content" => "#{render 'critical_status_content'}", "data-html" => "true", "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", :title => "Clear #{device.description}'s Status"} Critical
-            = render partial: 'bin_details', locals: {device: device}
-            -#
-              %td= device.bin_2_count
-              %td= device.bin_3_count
-              %td= device.bin_4_count
-              %td= device.bin_5_count
-              %td= device.bin_6_count
-              %td= device.bin_7_count
-              %td= device.bin_8_count
-            %td= number_to_currency(device.remaining)
+= paginate @devices
+  -#
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          = "Cash Dispensers and ATMs"
+      %table.table.table-striped.sortable
+        %thead
+          %tr
+            %th= devices_sortable 'dev_id', "Dev ID"
+            %th= devices_sortable 'description', "Description"
+            %th= devices_sortable 'online', "State"
+            %th= "Status"
+            %th= "Bin 1"
+            %th= "Bin 2"
+            %th= "Bin 3"
+            %th= "Bin 4"
+            %th= "Bin 5"
+            %th= "Bin 6"
+            %th= "Bin 7"
+            %th= "Bin 8"
+            %th= devices_sortable 'remaining', "Remaining"
+        %tbody
+          - @devices.each do |device|
+            %tr{:class => device.inactive? ? "info" : ""}
+              %td= link_to device.id, device
+              - if (device.inactive?)
+                %td= link_to device.description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "Device is inactive and not in production. EZCash will not drive this ATM, and it is not counted toward licensed devices."
+              - else
+                %td= device.description
+              %td= device.online.present? ? device_state_descriptions[device.online] : ''
+              %td
+                %a.btn.btn-xs.btn-danger{"data-content" => "#{render 'critical_status_content'}", "data-html" => "true", "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", :title => "Clear #{device.description}'s Status"} Critical
+              = render partial: 'bin_details', locals: {device: device}
+              -#
+                %td= device.bin_2_count
+                %td= device.bin_3_count
+                %td= device.bin_4_count
+                %td= device.bin_5_count
+                %td= device.bin_6_count
+                %td= device.bin_7_count
+                %td= device.bin_8_count
+              %td= number_to_currency(device.remaining)
           
-  = paginate @devices
+  
             
