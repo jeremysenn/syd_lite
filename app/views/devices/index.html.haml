@@ -24,7 +24,7 @@
           %th= devices_sortable 'remaining', "Remaining"
       = content_tag :tbody, id: "devices", data: {url: devices_url } do
         = render @devices
-= paginate @devices
+  = paginate @devices
   -#
     .panel.panel-primary
       .panel-heading
@@ -68,5 +68,5 @@
                 %td= device.bin_8_count
               %td= number_to_currency(device.remaining)
           
-  
+    = paginate @devices
             
