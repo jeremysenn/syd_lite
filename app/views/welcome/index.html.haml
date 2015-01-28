@@ -4,5 +4,8 @@
       %i.fa.fa-dollar
       EZcash Web Monitor
     - unless current_user.blank?
-      .col-sm-4.col-md-4.col-md-offset-4
+      .col-sm-12.col-md-4.col-md-offset-4
         %a.btn.btn-primary.btn-lg{:href => devices_path, :role => "button", :class => 'btn-block'} Devices
+    - else
+      .col-sm-12.col-md-4.col-md-offset-4
+        %a.btn.btn-primary.btn-lg{:href => login_path, :role => "button", :class => 'btn-block'} Log In
