@@ -15,9 +15,10 @@
         %li{:class => params[:controller] == "devices" ? "active" : ""}
           %a{href: devices_path}
             Devices
-        %li{}
-          %a{href: '#contact_us', "data-toggle" => "modal"}
-            Contact
+        -#
+          %li{}
+            %a{href: '#contact_us', "data-toggle" => "modal"}
+              Contact
       %ul.nav.navbar-nav.navbar-right
         = link_to "Signed in as <strong>#{current_user.user_name}</strong>".html_safe, current_user
         %a{href: logout_path, :class => "btn btn-default navbar-btn", :type => 'button', :confirm => "Are you sure you want to log out?", :title => "Log out"}

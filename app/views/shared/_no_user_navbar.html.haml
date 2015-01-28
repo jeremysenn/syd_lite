@@ -12,9 +12,10 @@
 
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li{}
-          %a{href: '#contact_us', "data-toggle" => "modal"}
-            Contact
+        -#
+          %li{}
+            %a{href: '#contact_us', "data-toggle" => "modal"}
+              Contact
       %ul.nav.navbar-nav.navbar-right
         %a{href: login_path, :class => "btn btn-primary navbar-btn", :type => 'button'}
           Log In
