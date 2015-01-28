@@ -47,7 +47,7 @@ gem 'unicorn'
 gem 'activeresource', :require => 'active_resource' # https://github.com/rails/activeresource
 
 # jQuery plugin for drop-in fix binded events problem caused by Turbolinks
-gem 'jquery-turbolinks'
+#gem 'jquery-turbolinks'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

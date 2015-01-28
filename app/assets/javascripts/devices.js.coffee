@@ -1,6 +1,6 @@
 @DevicePoller =
   poll: ->
-    # Poll server every 10 seconds
+    # Poll server after 10 seconds
     setTimeout @request, 10000
 
     # toggle ring's pulse class
