@@ -3,6 +3,9 @@
     .panel-heading
       %h3.panel-title
         = "Cash Dispensers and ATMs"
+        %span.beacon
+          %span.ring
+          %span.dot
     %table.table.table-striped.sortable
       %thead
         %tr
@@ -19,7 +22,32 @@
           %th= "Bin 7"
           %th= "Bin 8"
           %th= devices_sortable 'remaining', "Remaining"
+      = content_tag :tbody, id: "devices", data: {url: devices_url } do
+        = render @devices
 
+%hr
+%hr
+
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        = "Cash Dispensers and ATMs"
+    %table.table.table-striped.sortable
+      %thead
+        %tr
+          %th= devices_sortable 'dev_id', "Dev ID"
+          %th= devices_sortable 'description', "Description"
+          %th= devices_sortable 'online', "State"
+          %th= "Status"
+          %th= "Bin 1"
+          %th= "Bin 2"
+          %th= "Bin 3"
+          %th= "Bin 4"
+          %th= "Bin 5"
+          %th= "Bin 6"
+          %th= "Bin 7"
+          %th= "Bin 8"
+          %th= devices_sortable 'remaining', "Remaining"
       %tbody
         - @devices.each do |device|
           %tr{:class => device.inactive? ? "info" : ""}

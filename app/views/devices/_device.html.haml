@@ -1,0 +1,11 @@
+%tr{:class => device.inactive? ? "info" : ""}
+  %td= link_to device.id, device
+  - if (device.inactive?)
+    %td= link_to device.description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "Device is inactive and not in production. EZCash will not drive this ATM, and it is not counted toward licensed devices."
+  - else
+    %td= device.description
+  %td= device.online.present? ? device_state_descriptions[device.online] : ''
+  %td
+    %a.btn.btn-xs.btn-danger{"data-content" => "#{render 'critical_status_content'}", "data-html" => "true", "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", :title => "Clear #{device.description}'s Status"} Critical
+  = render partial: 'bin_details', locals: {device: device}
+  %td= number_to_currency(device.remaining)

@@ -21,6 +21,10 @@ class DevicesController < ApplicationController
         @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining).reverse).page(params[:page]).per(20) if devices_sort_direction == 'desc'
       end
     end
+    respond_to do |format|
+      format.html
+      format.js # for ajax polling
+    end
   end
   
   def show
