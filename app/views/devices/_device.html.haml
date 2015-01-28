@@ -9,3 +9,8 @@
     %a.btn.btn-xs.btn-danger{"data-content" => "#{render 'critical_status_content'}", "data-html" => "true", "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", :title => "Clear #{device.description}'s Status"} Critical
   = render partial: 'bin_details', locals: {device: device}
   %td= number_to_currency(device.remaining)
+
+:javascript
+  // Add these so that javascript tooltip and popover still work 
+  $("[data-toggle='tooltip']").tooltip()
+  $("[data-toggle='popover']").popover()
