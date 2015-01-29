@@ -15,8 +15,8 @@
         %td= number_to_currency(card.card_amt)
         %td= number_to_currency(card.avail_amt)
         %td= card.card_status
-        %td= card.issued_date.strftime("%-m/%-d/%y %l:%M%p")
-        %td= card.last_activity_date.strftime("%-m/%-d/%y %l:%M%p")
+        %td= card.issued_date.strftime("%-m/%-d/%y %H:%M:%S")
+        %td= card.last_activity_date.strftime("%-m/%-d/%y %H:%M:%S")
 
 = paginate @cards, :param_name => "cards_page"
             

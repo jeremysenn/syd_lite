@@ -8,7 +8,7 @@
   %tbody
     - @dev_statuses.each do |dev_status|
       %tr
-        %td= dev_status.date_time.strftime("%-m/%-d/%y %l:%M%p")
+        %td= dev_status.date_time.strftime("%-m/%-d/%y %H:%M:%S")
         %td= dev_status.status_description
         %td= dev_status.raw_status
 
