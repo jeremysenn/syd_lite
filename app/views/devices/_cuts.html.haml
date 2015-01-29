@@ -1,7 +1,7 @@
-.row-fluid
-  %br
-  - @bill_hists.group_by{ |bh| bh.cut_dt }.each do |day, bill_hists| 
-    %div.col-xs-12.col-md-8
+%br
+- @bill_hists.group_by{ |bh| bh.cut_dt }.each do |day, bill_hists| 
+  .row
+    %div.col-xs-12.col-md-4
       .panel.panel-primary
         .panel-heading
           %h3.panel-title
@@ -19,61 +19,35 @@
             %tr
               %td= number_to_currency(old_start_total)
               %td= number_to_currency(new_start_total)
-          -#
-            %thead
-              %tr
-                -#
-                  %th= "Cut Date"
-                %th= "Old Start"
-                %th= "New Start"
-                %th= "Cassette ID"
-                %th= "Denomination"
-            %tbody
-              - bill_hists.each do |bill_hist|
-                %tr
-                  -#
-                    %td= bill_hist.cut_dt.strftime("%-m/%-d/%y %l:%M:%S%p")
-                  %td= bill_hist.old_start
-                  %td= bill_hist.new_start
-                  %td= bill_hist.cassette_id
-                  %td= number_to_currency(bill_hist.denomination)
-            %tfoot
-              -old_start_total=0
-              -new_start_total=0
-              - bill_hists.each do |bill_hist|
-                -old_start_total=old_start_total + (bill_hist.old_start * bill_hist.denomination)
-                -new_start_total=new_start_total + (bill_hist.new_start * bill_hist.denomination)
-              %tr
-                %td
-                %td
-                %td{class: 'info'}
-                  %strong Old Start Total
-                %td{class: 'info'}= number_to_currency(old_start_total)
-              %tr
-                %td
-                %td
-                %td{class: 'info'}
-                  %strong New Start Total
-                %td{class: 'info'}= number_to_currency(new_start_total)
-              
-          
--#
-  %table.table.table-striped.table-hover
-    %thead
-      %tr
-        %th= "Cut Date"
-        %th= "Old Start"
-        %th= "New Start"
-        %th= "Cassette ID"
-        %th= "Denomination"
 
-    %tbody
-      - @bill_hists.each do |bill_hist|
-        %tr
-          %td= bill_hist.cut_dt.strftime("%-m/%-d/%y %l:%M:%S%p")
-          %td= bill_hist.old_start
-          %td= bill_hist.new_start
-          %td= bill_hist.cassette_id
-          %td= number_to_currency(bill_hist.denomination)
+    %div.col-xs-12.col-md-8
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            Bill Hists
+            = day.strftime("%-m/%-d/%y %l:%M:%S%p")  
+        %table.table.table-striped.table-hover
+          %thead
+            %tr
+              %th= "Old Start"
+              %th= "New Start"
+              %th= "Old Term Cyc"
+              %th= "Old Host Cyc"
+              %th= "Old Added"
+              %th= "Added"
+              %th= "Cassette ID"
+              %th= "Denomination"
+          - bill_hists.each do |bill_hist|
+            %tbody
+              %tr
+                %td= bill_hist.old_start
+                %td= bill_hist.new_start
+                %td= bill_hist.old_term_cyc
+                %td= bill_hist.old_host_cyc
+                %td= bill_hist.old_added
+                %td= bill_hist.added
+                %td= bill_hist.cassette_id
+                %td= number_to_currency(bill_hist.denomination)
+    %hr
 
 = paginate @bill_hists, :param_name => "bill_hists_page"
