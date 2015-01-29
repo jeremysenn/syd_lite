@@ -3,7 +3,7 @@
   .panel.panel-primary
     .panel-heading
       %h3.panel-title
-        = "Device #{@device.id} - #{@device.online}"
+        = "Device #{@device.id} - #{device_state_descriptions[@device.online]}"
         .pull-right= @device.description
           
     .panel-body

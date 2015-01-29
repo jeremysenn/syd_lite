@@ -55,4 +55,5 @@ class Transaction < ActiveRecord::Base
   #############################
   #     Class Methods      #
   #############################
+  
 end

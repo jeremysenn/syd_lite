@@ -4,10 +4,30 @@ class Image < ActiveResource::Base
 
   self.primary_key = 'capture_seq_nbr'
   
+  #############################
+  #     Instance Methods      #
+  #############################
+  
   def is_customer_image(customer_name)
     Image.get(:ransack_search, :q => {ticket_nbr_eq: ticket_nbr, cust_name_eq: customer_name}).count > 0
   end
+  
+  def mov?
+    File.extname(file_name) == ".mov" or File.extname(file_name) == ".MOV"
+  end
 
+  def hidden?
+    if respond_to?(:hidden)
+      return hidden == 1
+    else
+      return false
+    end
+  end
+
+  #############################
+  #       Class Methods      #
+  #############################
+  
   def self.container_number(ticket_number)
     image = Image.get(:ransack_search, :q => {ticket_nbr_eq: ticket_number, container_nbr_present: true}).first
     if image.blank?
@@ -59,18 +79,6 @@ class Image < ActiveResource::Base
       return nil
     else
       return Image.find(image["capture_seq_nbr"]).branch_code
-    end
-  end
-
-  def mov?
-    File.extname(file_name) == ".mov" or File.extname(file_name) == ".MOV"
-  end
-
-  def hidden?
-    if respond_to?(:hidden)
-      return hidden == 1
-    else
-      return false
     end
   end
 

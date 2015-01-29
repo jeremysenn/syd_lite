@@ -226,6 +226,11 @@ class Device < ActiveRecord::Base
 #    return bin_1_remaining + bin_2_remaining + bin_3_remaining + bin_4_remaining + bin_5_remaining + bin_6_remaining + bin_7_remaining + bin_8_remaining
   end
   
+  def transactions_date_span_search(start_date, end_date)
+#    transactions.where("CreateDate" => start_date..end_date)
+    transactions.where("CreateDate > ? AND CreateDate <= ?", start_date, end_date)
+  end
+  
   #############################
   #     Class Methods      #
   #############################

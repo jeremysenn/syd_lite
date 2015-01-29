@@ -18,7 +18,7 @@
     - @transactions.each do |transaction|
       %tr
         %td= transaction.id
-        %td= transaction.CreateDate.strftime("%-m/%-d/%y %l:%M%p")
+        %td= transaction.CreateDate.strftime("%-m/%-d/%y %H:%M:%S")
         -#
           %td= transaction.dev_id
         %td= link_to transaction.status_description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "#{transaction.status_long_description}"
