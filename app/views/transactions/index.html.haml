@@ -26,7 +26,7 @@
           - unless transaction.error_code_description == 'Success'
             %td= link_to transaction.error_code_description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "#{transaction.error_code_long_description}"
           - else
-            %td
+            %td= "Success"
         %td= transaction.tran_code
         - if @receipt_nbr_column_count and @receipt_nbr_column_count > 0
           %td= transaction.receipt_nbr
