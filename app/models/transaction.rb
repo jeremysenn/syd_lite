@@ -44,7 +44,7 @@ class Transaction < ActiveRecord::Base
   end
   
   def images
-    images = Image.get(:ransack_search, :q => {tranid_eq: tranID})
+    images = Image.get(:ransack_search, :q => {tranid_eq: tranID, receipt_nbr: receipt_nbr, m: 'or'})
     unless images.blank?
       return images
     else
