@@ -46,9 +46,18 @@
                     - transaction.images.each do |image|
                       %div.row
                         .col-xs-12.col-md-12
-                          %a.thumbnail{:href => "http://#{ENV['SCRAP_YARD_DOG_COMPANY_NAME']}:#{ENV['SCRAP_YARD_DOG_COMPANY_ID']}@#{ENV['SCRAP_YARD_DOG_HOST']}/image_datas/multi_transaction_search?tranids=#{transaction.id}", 
-                            :target => "_blank", :title => "Open in Scrap Yard Dog"}
-                            %img{:alt => image['capture_seq_nbr'], :src => send_preview_transaction_path(image['capture_seq_nbr'])}
+                          - if image['tranid'].present?
+                            %a.thumbnail{:href => "http://#{ENV['SCRAP_YARD_DOG_HOST']}/image_datas/api_ticket_search?q[tranid_eq]=#{transaction.id}", 
+                              :target => "_blank", :title => "Open in Scrap Yard Dog"}
+                              %img{:alt => image['capture_seq_nbr'], :src => send_preview_transaction_path(image['capture_seq_nbr'])}
+                          - if image['receipt_nbr'].present?
+                            %a.thumbnail{:href => "http://#{ENV['SCRAP_YARD_DOG_HOST']}/image_datas/api_ticket_search?q[receipt_nbr_eq]=#{transaction.receipt_nbr}", 
+                              :target => "_blank", :title => "Open in Scrap Yard Dog"}
+                              %img{:alt => image['capture_seq_nbr'], :src => send_preview_transaction_path(image['capture_seq_nbr'])}
+                          -#
+                            %a.thumbnail{:href => "http://#{ENV['SCRAP_YARD_DOG_COMPANY_NAME']}:#{ENV['SCRAP_YARD_DOG_COMPANY_ID']}@#{ENV['SCRAP_YARD_DOG_HOST']}/image_datas/multi_transaction_search?tranids=#{transaction.id}", 
+                              :target => "_blank", :title => "Open in Scrap Yard Dog"}
+                              %img{:alt => image['capture_seq_nbr'], :src => send_preview_transaction_path(image['capture_seq_nbr'])}
                     -#
                       %ul.thumbnails
                         - transaction.images.each do |image|
