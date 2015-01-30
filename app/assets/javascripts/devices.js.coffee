@@ -1,7 +1,7 @@
 @DevicePoller =
   poll: ->
-    # Poll server after 20 seconds
-    setTimeout @request, 20000
+    # Poll server after 30 seconds
+    setTimeout @request, 30000
 
     # toggle ring's pulse class
     $(".ring").toggleClass "pulse"

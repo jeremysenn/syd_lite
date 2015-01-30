@@ -89,6 +89,31 @@
                     %td= transaction.receipt_nbr
                     %td= number_to_currency(transaction.amt_req)
                     %td= number_to_currency(transaction.amt_auth)
-                    %td= 'None'
+                    %td
+                      - unless transaction.images.blank?
+                        %a{href: "#transaction_#{transaction.id}_images", "data-toggle" => "modal"}
+                          %i.fa.fa-picture-o
+                        %div{id: "transaction_#{transaction.id}_images", :class => "modal fade", :style => "display:none;"}
+                          .modal-dialog.modal-sm
+                            .modal-content
+                              .modal-header
+                                = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+                                %strong= "Transaction #{transaction.id}"
+                              .modal-body
+                                - transaction.images.each do |image|
+                                  %div.row
+                                    .col-xs-12.col-md-12
+                                      - if image['tranid'].present?
+                                        %a.thumbnail{:href => "http://#{ENV['SCRAP_YARD_DOG_HOST']}/image_datas/api_ticket_search?q[tranid_eq]=#{transaction.id}", 
+                                          :target => "_blank", :title => "Open in Scrap Yard Dog"}
+                                          %img{:alt => image['capture_seq_nbr'], :src => send_preview_transaction_path(image['capture_seq_nbr'])}
+                                      - if image['receipt_nbr'].present?
+                                        %a.thumbnail{:href => "http://#{ENV['SCRAP_YARD_DOG_HOST']}/image_datas/api_ticket_search?q[receipt_nbr_eq]=#{transaction.receipt_nbr}", 
+                                          :target => "_blank", :title => "Open in Scrap Yard Dog"}
+                                          %img{:alt => image['capture_seq_nbr'], :src => send_preview_transaction_path(image['capture_seq_nbr'])}
+                              .modal-footer
+                                = link_to 'Close', '#', :class => 'btn btn-primary', "data-dismiss" => "modal"
+                      - else
+                        None
 
 = paginate @bill_hists, :param_name => "bill_hists_page"
