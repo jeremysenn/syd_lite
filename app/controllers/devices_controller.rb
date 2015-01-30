@@ -39,6 +39,15 @@ class DevicesController < ApplicationController
     @receipt_nbr_column_count = @transactions.select { |result| result.receipt_nbr != "" }.select{ |result| result.receipt_nbr != nil }.count
   end
   
+  def clear_status
+    @device = Device.find(params[:id])
+    if @device.update_attributes(caution_flag: 0)
+      redirect_to devices_path, :notice  => "Successfully cleared status for #{@device.description}."
+    else
+      redirect_to devices_path, :alert  => "Unable to clear status for #{@device.description}."
+    end
+  end
+  
   private
 
     ### Secure the sort direction of device's transactions ###
@@ -63,12 +72,12 @@ class DevicesController < ApplicationController
     
     ### Secure the devices sort direction ###
     def devices_sort_direction
-      %w[asc desc].include?(params[:devices_direction]) ?  params[:devices_direction] : "asc"
+      %w[asc desc].include?(params[:devices_direction]) ?  params[:devices_direction] : "desc"
     end
 
     ### Secure the devices sort column name ###
     def devices_sort_column
-      ["dev_id", "description", "online", "remaining"].include?(params[:devices_sort]) ? params[:devices_sort] : "dev_id"
+      ["dev_id", "description", "online", "remaining", "caution_flag"].include?(params[:devices_sort]) ? params[:devices_sort] : "caution_flag"
     end
     
 end
