@@ -1,2 +1,3 @@
+%p= device.caution_status_description
 = link_to "Cancel", '#', class: 'btn btn-default', onclick: "$(this).closest('div.popover').prev().popover('hide');", value: "close"
-= link_to "Clear Status", clear_status_device_path(device.id), class: 'btn btn-warning'
+= link_to "Clear Status", clear_status_device_path(device.id), class: 'btn btn-primary'

@@ -6,8 +6,10 @@
     %td= device.description
   %td= device.online.present? ? device_state_descriptions[device.online] : ''
   %td
-    - if device.caution_flag == 1
-      %a.btn.btn-xs.btn-danger{"data-content" => "#{render 'critical_status_content', device: device}", "data-html" => "true", "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", :title => "Clear #{device.description}'s Status"} Critical
+    - if device.critical_status?
+      %a.btn.btn-xs.btn-danger{"data-content" => "#{render 'clear_status_content', device: device}", "data-html" => "true", "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", :title => "Clear #{device.description}'s Status"} Critical
+    - elsif device.caution_status?
+      %a.btn.btn-xs.btn-warning{"data-content" => "#{render 'clear_status_content', device: device}", "data-html" => "true", "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", :title => "Clear #{device.description}'s Status"} Warning
   = render partial: 'bin_details', locals: {device: device}
   %td= number_to_currency(device.remaining)
 

@@ -5,6 +5,31 @@ class Device < ActiveRecord::Base
   #     Instance Methods      #
   #############################
   
+  def caution_status_description
+    unless caution_status.blank?
+      status_description = StatusDesc.find_by_status(caution_status)
+      unless status_description.blank?
+        status_description.short_desc
+      else
+        return nil
+      end
+    else
+      return nil
+    end
+  end
+  
+  def critical_status?
+    caution_flag == 2
+  end
+  
+  def caution_status?
+    caution_flag == 1
+  end
+  
+  def okay_status?
+    caution_flag == nil or caution_flag == 0
+  end
+  
   def inactive?
     unless inactive_flag.blank?
       inactive_flag > 0
