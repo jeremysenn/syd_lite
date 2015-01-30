@@ -91,9 +91,9 @@
                     %td= number_to_currency(transaction.amt_auth)
                     %td
                       - unless transaction.images.blank?
-                        %a{href: "#transaction_#{transaction.id}_images", "data-toggle" => "modal"}
+                        %a{href: "#cut_transaction_#{transaction.id}_images", "data-toggle" => "modal"}
                           %i.fa.fa-picture-o
-                        %div{id: "transaction_#{transaction.id}_images", :class => "modal fade", :style => "display:none;"}
+                        %div{id: "cut_transaction_#{transaction.id}_images", :class => "modal fade", :style => "display:none;"}
                           .modal-dialog.modal-sm
                             .modal-content
                               .modal-header
