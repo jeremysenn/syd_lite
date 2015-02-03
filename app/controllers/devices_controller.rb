@@ -8,7 +8,8 @@ class DevicesController < ApplicationController
   def index
     if current_user.dev_group.blank? and current_user.dev_site.blank? # No device limitations
       unless devices_sort_column == 'remaining'
-        @devices = Kaminari.paginate_array(Device.order(devices_sort_column + ' ' + devices_sort_direction)).page(params[:page]).per(20)
+#        @devices = Kaminari.paginate_array(Device.order(devices_sort_column + ' ' + devices_sort_direction)).page(params[:page]).per(20)
+        @devices = Kaminari.paginate_array(Device.order(devices_sort_column + ' ' + devices_sort_direction).order(dev_id: :asc)).page(params[:page]).per(20)
       else
         @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining)).page(params[:page]).per(20) if devices_sort_direction == 'asc'
         @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining).reverse).page(params[:page]).per(20) if devices_sort_direction == 'desc'
