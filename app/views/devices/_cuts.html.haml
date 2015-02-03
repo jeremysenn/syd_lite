@@ -30,21 +30,21 @@
               %dd= number_to_currency(BillHist.host_bill_dispensed(day))
               %dt
                 %strong= "Term Remain:"
-              %dd= number_to_currency(BillHist.new_start_total(day) - BillHist.terminal_bill_dispensed(day))
+              %dd= number_to_currency(BillHist.old_start_total(day) - BillHist.terminal_bill_dispensed(day))
               %dt
                 %strong= "Host Remain:"
-              %dd= number_to_currency(BillHist.new_start_total(day) - BillHist.host_bill_dispensed(day))
+              %dd= number_to_currency(BillHist.old_start_total(day) - BillHist.host_bill_dispensed(day))
               - unless (index + 1) == @bill_hists.group_by{ |bh| bh.cut_dt }.count
                 %dt
                   %strong= "Total  Remaining:"
-                %dd= number_to_currency(BillHist.new_start_total(day) - @device.transactions_total_amount_authorized_date_span((@bill_hists.group_by{ |bh| bh.cut_dt }.keys[index + 1]).strftime("%Y-%m-%d %H:%M:%S"), day))
+                %dd= number_to_currency(BillHist.old_start_total(day) - @device.transactions_total_amount_authorized_date_span((@bill_hists.group_by{ |bh| bh.cut_dt }.keys[index + 1]).strftime("%Y-%m-%d %H:%M:%S"), day))
 
           %table.table.table-striped.table-hover
             %caption Details
             %thead
               %tr
-                %th New Start
                 %th Old Start
+                %th New Start
                 %th Added
                 %th Term Bill Disp
                 %th Host Bill Disp
@@ -52,16 +52,16 @@
                 %th Host Remain
                 %th Total Remaining
               %tr
-                %td= number_to_currency(BillHist.new_start_total(day))
                 %td= number_to_currency(BillHist.old_start_total(day))
+                %td= number_to_currency(BillHist.new_start_total(day))
                 %td= number_to_currency(BillHist.added(day))
                 %td= number_to_currency(BillHist.terminal_bill_dispensed(day))
                 %td= number_to_currency(BillHist.host_bill_dispensed(day))
-                %td= number_to_currency(BillHist.new_start_total(day) - BillHist.terminal_bill_dispensed(day))
-                %td= number_to_currency(BillHist.new_start_total(day) - BillHist.host_bill_dispensed(day))
+                %td= number_to_currency(BillHist.old_start_total(day) - BillHist.terminal_bill_dispensed(day))
+                %td= number_to_currency(BillHist.old_start_total(day) - BillHist.host_bill_dispensed(day))
                 %td
                   - unless (index + 1) == @bill_hists.group_by{ |bh| bh.cut_dt }.count
-                    = number_to_currency(BillHist.new_start_total(day) - @device.transactions_total_amount_authorized_date_span((@bill_hists.group_by{ |bh| bh.cut_dt }.keys[index + 1]).strftime("%Y-%m-%d %H:%M:%S"), day))
+                    = number_to_currency(BillHist.old_start_total(day) - @device.transactions_total_amount_authorized_date_span((@bill_hists.group_by{ |bh| bh.cut_dt }.keys[index + 1]).strftime("%Y-%m-%d %H:%M:%S"), day))
 
           - unless (index + 1) == @bill_hists.group_by{ |bh| bh.cut_dt }.count
             %table.table.table-striped.table-hover
