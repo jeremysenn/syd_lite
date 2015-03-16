@@ -22,6 +22,10 @@ class DevicesController < ApplicationController
         @devices = Kaminari.paginate_array(Device.all.sort_by(&:remaining).reverse).page(params[:page]).per(20) if devices_sort_direction == 'desc'
       end
     end
+    
+    ### Get count of columns with data so only show columns if there is data in at least one of the records
+    @status_column_count = @devices.select{ |device| device.caution_flag != "" }.select{ |device| device.caution_flag != nil }.count
+    
     respond_to do |format|
       format.html
       format.js # for ajax polling

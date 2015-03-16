@@ -12,7 +12,8 @@
           %th= devices_sortable 'dev_id', "Dev ID"
           %th= devices_sortable 'description', "Description"
           %th= devices_sortable 'online', "State"
-          %th= devices_sortable 'caution_flag', "Status"
+          - if @status_column_count > 0
+            %th= devices_sortable 'caution_flag', "Status"
           %th= "Bin 1"
           %th= "Bin 2"
           %th= "Bin 3"
