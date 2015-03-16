@@ -14,14 +14,22 @@
           %th= devices_sortable 'online', "State"
           - if @status_column_count > 0
             %th= devices_sortable 'caution_flag', "Status"
-          %th= "Bin 1"
-          %th= "Bin 2"
-          %th= "Bin 3"
-          %th= "Bin 4"
-          %th= "Bin 5"
-          %th= "Bin 6"
-          %th= "Bin 7"
-          %th= "Bin 8"
+          - if @bin_1_column_count > 0
+            %th= "Bin 1"
+          - if @bin_2_column_count > 0
+            %th= "Bin 2"
+          - if @bin_3_column_count > 0
+            %th= "Bin 3"
+          - if @bin_4_column_count > 0
+            %th= "Bin 4"
+          - if @bin_5_column_count > 0
+            %th= "Bin 5"
+          - if @bin_6_column_count > 0
+            %th= "Bin 6"
+          - if @bin_7_column_count > 0
+            %th= "Bin 7"
+          - if @bin_8_column_count > 0
+            %th= "Bin 8"
           %th= devices_sortable 'remaining', "Remaining"
       = content_tag :tbody, id: "devices", data: {url: devices_url } do
         = render @devices
