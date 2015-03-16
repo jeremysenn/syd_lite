@@ -1,9 +1,9 @@
 %tr{:class => device.inactive? ? "info" : ""}
   %td= link_to device.id, device
   - if (device.inactive?)
-    %td= link_to device.description, '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "Device is inactive and not in production. EZCash will not drive this ATM, and it is not counted toward licensed devices."
+    %td= link_to device.description.truncate(15), '#', "data-toggle" => "tooltip", "data-placement" => "right", "title" => "Device is inactive and not in production. EZCash will not drive this ATM, and it is not counted toward licensed devices."
   - else
-    %td= device.description
+    %td= device.description.truncate(15)
   %td= device.online.present? ? device_state_descriptions[device.online] : ''
   - if @status_column_count > 0
     %td
