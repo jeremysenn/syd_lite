@@ -24,7 +24,7 @@ class DevicesController < ApplicationController
     end
     
     ### Get count of columns with data so only show columns if there is data in at least one of the records
-    @status_column_count = @devices.select{ |device| device.caution_flag != "" }.select{ |device| device.caution_flag != nil }.count
+    @status_column_count = @devices.select{ |device| device.caution_flag != 0 }.select{ |device| device.caution_flag != nil }.count
     
     respond_to do |format|
       format.html
