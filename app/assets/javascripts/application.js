@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require twbs/bootstrap
 //= require turbolinks
+//= require jquery.inview.min.js
 //= require_tree .

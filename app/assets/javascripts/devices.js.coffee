@@ -25,4 +25,14 @@ jQuery ->
   if $('#devices').length > 0
     DevicePoller.poll()
 
+  loading_transactions = false
+  $('a.load-more-transactions').on 'inview', (e, visible) ->
+    return if loading_transactions or not visible
+    loading_transactions = true
+    $('#spinner').show()
+    $('a.load-more-transactions').hide()
+
+    $.getScript $(this).attr('href'), ->
+      loading_transactions = false
+
   
