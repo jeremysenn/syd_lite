@@ -1,0 +1,12 @@
+$('#transactions').append('<div class=""><%= j render @transactions %></div>');
+$('#spinner').hide();
+
+<%  if false %>
+  <% if @log_records.next_page %>
+    $('a.load-more-log-records').show();
+    $('a.load-more-log-records').attr('href', '<%= accounts_path page: @log_records.next_page %>');
+  <% else %>
+    $(window).off('scroll');
+    $('a.load-more-log-records').remove();
+  <% end %>
+<% end %>
