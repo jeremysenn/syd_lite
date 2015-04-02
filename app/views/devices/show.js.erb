@@ -1,9 +1,9 @@
 $('#transactions_index').append('<%= j render @transactions %>');
 $('#spinner').hide();
 
-<% if @transactions.next_page %>
+<% if @transactions.transactions_page %>
   $('a.load-more-transactions').show();
-  $('a.load-more-transactions').attr('href', '<%= device_path(@device, page: @transactions.next_page) %>');
+  $('a.load-more-transactions').attr('href', '<%= device_path(@device, page: @transactions.transactions_page) %>');
 <% else %>
   $(window).off('scroll');
   $('a.load-more-transactions').remove();
