@@ -67,6 +67,10 @@
                     = link_to 'Close', '#', :class => 'btn btn-primary', "data-dismiss" => "modal"
           - else
             None
-      
-= paginate @transactions, :param_name => "transactions_page"
+.row
+  .text-center
+    %div{id: 'endless_page'}
+      %p= image_tag("ajax-loader.gif", :id => "spinner", :alt => "Loading ...", style: "display:none;")
+      %p= link_to 'Load more ...', device_path(@device, :page => @transactions.next_page), :class => 'load-more-transactions btn btn-default', :remote => true, :onclick => "$(this).hide(); $('#spinner').show();" if @transactions.next_page      
+    =# paginate @transactions, :param_name => "transactions_page"
             

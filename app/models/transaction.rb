@@ -48,7 +48,7 @@ class Transaction < ActiveRecord::Base
     unless images.blank?
       return images
     else
-      return nil
+      return []
     end
   end
   
