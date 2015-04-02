@@ -1,12 +1,10 @@
 $('#transactions_index').append('<%= j render @transactions %>');
 $('#spinner').hide();
 
-<%  if false %>
-  <% if @log_records.next_page %>
-    $('a.load-more-log-records').show();
-    $('a.load-more-log-records').attr('href', '<%= accounts_path page: @log_records.next_page %>');
-  <% else %>
-    $(window).off('scroll');
-    $('a.load-more-log-records').remove();
-  <% end %>
+<% if @transactions.next_page %>
+  $('a.load-more-transactions').show();
+  $('a.load-more-transactions').attr('href', '<%= device_path(@device, page: @transactions.next_page) %>');
+<% else %>
+  $(window).off('scroll');
+  $('a.load-more-transactions').remove();
 <% end %>
