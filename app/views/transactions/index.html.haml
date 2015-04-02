@@ -1,4 +1,4 @@
-%table.table.table-striped.sortable
+%table.table.table-striped.sortable{id: "transactions"}
   %thead
     %tr
       %th= transactions_sortable 'tranID', "TranID"
@@ -14,7 +14,7 @@
       %th= transactions_sortable 'amt_req', "Amt Req"
       %th= transactions_sortable 'amt_auth', "Amt Auth"
       %th= "Images"
-  %tbody{id: "transactions"}
+  %tbody
     - @transactions.each do |transaction|
       %tr
         %td= transaction.id
