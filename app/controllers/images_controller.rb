@@ -42,6 +42,7 @@ class ImagesController < ApplicationController
   end
 
   def show
+    @ticket_number = @image.ticket_nbr
     respond_with(@image)
   end
 
