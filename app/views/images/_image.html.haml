@@ -2,7 +2,7 @@
   %div.panel.panel-primary
     %div.list_group
       - unless @today == true or params[:q].blank?
-        %a{href: image_path(image), class: "list-group-item"}
+        %a{href: image_path(image), class: "list-group-item", data: { disable_with: "Please wait..." }}
           = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive') if params[:show_thumbnails] == '1'
           = image.ticket_nbr
           .pull-right
@@ -16,7 +16,7 @@
           %br/
           %small.text-muted= image.sys_date_time.strftime("%-m/%-d/%y %l:%M %p")
       - else
-        %a{href: images_path("q[ticket_nbr_eq]" => image.ticket_nbr), class: "list-group-item"}
+        %a{href: images_path("q[ticket_nbr_eq]" => image.ticket_nbr), class: "list-group-item", data: { disable_with: "Please wait..." }}
           = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive') if params[:show_thumbnails] == '1'
           = image.ticket_nbr
           .pull-right
