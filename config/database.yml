@@ -3,14 +3,20 @@
 #
 # Be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+
 development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+jpegger:
   adapter: sqlserver
-  host: <%= ENV["EZCASH_HOST"] %>
-  database: <%= ENV["EZCASH_DATABASE"] %>
-  username: <%= ENV["EZCASH_USERNAME"] %>
-  password: <%= ENV["EZCASH_PASSWORD"] %>
-#  <<: *default
-#  database: db/development.sqlite3
+  host: <%= ENV["JPEGGER_HOST"] %>
+  username: <%= ENV["JPEGGER_USERNAME"] %>
+  password: <%= ENV["JPEGGER_PASSWORD"] %>
+  database: <%= ENV["JPEGGER_DATABASE"] %>
+  port: <%= ENV["JPEGGER_PORT"] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -18,8 +24,4 @@ development:
 
 
 production:
-  adapter: sqlserver
-  host: <%= ENV["EZCASH_HOST"] %>
-  database: <%= ENV["EZCASH_DATABASE"] %>
-  username: <%= ENV["EZCASH_USERNAME"] %>
-  password: <%= ENV["EZCASH_PASSWORD"] %>
+#  

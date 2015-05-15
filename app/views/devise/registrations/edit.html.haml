@@ -1,0 +1,35 @@
+.container
+  .well.col-sm-6.col-md-4.col-md-offset-4
+    %h2 Edit
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
+      .row.form-group
+        %div{:class => "col-sm-10"}
+          = f.label :email, :class => "control-label"
+          %br/
+          = f.email_field :email, :class => "form-control input-lg"
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        .row.form-group
+          %div{:class => "col-sm-10"}
+            Currently waiting confirmation for: #{resource.unconfirmed_email}
+      .row.form-group
+        %div{:class => "col-sm-10"}
+          = f.label :password, :class => "control-label"
+          %br/
+          = f.password_field :password, :autocomplete => "off", :class => "form-control input-lg"
+          %p.help-block Leave blank if you don't want to change it.
+      .row.form-group
+        %div{:class => "col-sm-10"}
+          = f.label :password_confirmation, :class => "control-label"
+          %br/
+          = f.password_field :password_confirmation, :class => "form-control input-lg"
+      .row.form-group
+        %div{:class => "col-sm-10"}
+          = f.label :current_password, :class => "control-label"
+          %br/
+          = f.password_field :current_password, :class => "form-control input-lg"
+          %p.help-block We need your current password to confirm your changes.
+      .row.form-group
+        %div{:class => "col-sm-10"}
+          = link_to "Cancel", :back, :class => "btn btn-lg btn-default"
+          = f.submit "Update", :class => "btn btn-lg btn-primary", data: { disable_with: "Please wait ..." }

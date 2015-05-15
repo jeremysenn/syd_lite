@@ -16,4 +16,5 @@
 //= require twbs/bootstrap
 //= require turbolinks
 //= require jquery.inview.min.js
+//= require bootstrap-typeahead-rails
 //= require_tree .

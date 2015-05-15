@@ -12,10 +12,11 @@ gem 'activerecord-sqlserver-adapter'
 # Set environment variables within application.yml
 gem "figaro" 
 
+# Use haml
 gem 'haml'
 
-# Pagination
-gem 'kaminari-bootstrap'
+# haml generators for Rails 4. Also enables haml as the templating engine
+#gem "haml-rails", "~> 0.9"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -52,6 +53,31 @@ gem 'jquery-turbolinks'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3'
+
+# Multi-parameter searching
+gem "polyamorous"#, :github => "activerecord-hackery/polyamorous"
+gem "ransack"#, github: "activerecord-hackery/ransack", branch: "rails-4.1"
+
+# Flexible authentication solution for Rails with Warden. http://blog.plataformatec.com.br/tag/devise/
+gem 'devise'
+
+# Pagination
+gem 'kaminari-bootstrap'
+
+# Bootstrap Typeahead gem for Rails 3 assets pipeline.
+gem 'bootstrap-typeahead-rails'
+
+# File uploads for Rails, Sinatra and other Ruby web frameworks - https://github.com/carrierwaveuploader/carrierwave
+gem 'carrierwave'
+
+# Image processing
+gem 'rmagick', :require => false
+
+# Background jobs
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
