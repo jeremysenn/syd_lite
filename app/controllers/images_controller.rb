@@ -9,6 +9,8 @@ class ImagesController < ApplicationController
   def index
     unless params[:q].blank? or params[:today] == true
       @ticket_number = params[:q][:ticket_nbr_eq]
+      @start_date = params[:q][:sys_date_time_gteq]
+      @end_date = params[:q][:sys_date_time_lteq]
       search = Image.ransack(params[:q])
 #      search.sorts = "#{sort} #{direction}"
       search.sorts = "sys_date_time desc"
@@ -32,8 +34,8 @@ class ImagesController < ApplicationController
 #      search = Image.ransack(:sys_date_time_gteq => Date.today, :sys_date_time_lteq => Date.today.tomorrow)
       search = Image.ransack(:sys_date_time_gteq => Date.today, :sys_date_time_lteq => Date.today.tomorrow)
       params[:q] = {}
-      params[:q][:sys_date_time_gteq] = Date.today.to_s
-      params[:q][:sys_date_time_lteq]= Date.today.tomorrow.to_s
+      @start_date = Date.today.to_s
+      @end_date = Date.today.tomorrow.to_s
       search.sorts = "sys_date_time desc"
       @images = search.result
       @images = Kaminari.paginate_array(@images.to_a.uniq { |image| image.ticket_nbr }).page(params[:page]).per(6)
