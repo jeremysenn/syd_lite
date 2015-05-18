@@ -5,10 +5,12 @@
         .modal-body
           %div.form-group{:id => "ticket_search"}
             = label_tag "Ticket Number", nil, :class => 'control-label'
-            - unless params[:q].blank?
-              = search_field_tag "q[ticket_nbr_eq]", nil, :placeholder => "Ticket Number", value: params[:q][:ticket_nbr_eq], class: "form-control input-lg"
-            - else
-              = search_field_tag "q[ticket_nbr_eq]", nil, :placeholder => "Ticket Number", class: "form-control input-lg"
+            = search_field_tag "q[ticket_nbr_eq]", nil, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg"
+            -#
+              - unless params[:q].blank?
+                = search_field_tag "q[ticket_nbr_eq]", nil, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg"
+              - else
+                = search_field_tag "q[ticket_nbr_eq]", nil, :placeholder => "Ticket Number", class: "form-control input-lg"
           .form-group
             = label_tag "Start Date", nil, :class => 'control-label'
             - unless params[:q].blank?

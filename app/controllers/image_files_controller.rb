@@ -1,15 +1,19 @@
 class ImageFilesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_image_file, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /image_files
   # GET /image_files.json
   def index
-    @image_files = ImageFile.all
+#    @image_files = ImageFile.all
+    @image_files = current_user.image_files
   end
 
   # GET /image_files/1
   # GET /image_files/1.json
   def show
+    @ticket_number = @image_file.ticket_number
   end
 
   # GET /image_files/new
@@ -28,8 +32,8 @@ class ImageFilesController < ApplicationController
 
     respond_to do |format|
       if @image_file.save
-#        format.html { redirect_to @image_file, notice: 'Image file was successfully created.' }
-        format.html { redirect_to images_path, notice: 'Image file was successfully created.' }
+#        format.html { redirect_to images_path, notice: 'Image file was successfully created.' }
+        format.html { redirect_to @image_file, notice: 'Image file was successfully created.' }
         format.json { render :show, status: :created, location: @image_file }
       else
         format.html { render :new }

@@ -47,7 +47,6 @@ class ImageFileUploader < CarrierWave::Uploader::Base
   end
   
   def caption
-    Rails.logger.debug "ticket number: ************** #{model.ticket_number} *****************"
     # top caption
     manipulate! do |source|
       txt = Magick::Draw.new

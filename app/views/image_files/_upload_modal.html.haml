@@ -10,13 +10,13 @@
           = f.hidden_field :user_id, value: current_user.id
           .form-group
             = f.label "Ticket Number", :class => 'control-label'
-            = f.text_field :ticket_number, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg"
+            = f.text_field :ticket_number, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg", autofocus: true, required: true
           .form-group{:id => "event_code"}
             = f.label :event_code, :class => 'control-label'
-            = f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{Image.event_codes.map(&:event_code)}"}
+            = f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{Image.event_codes.map(&:event_code)}"}, required: true
           .form-group
             = f.label :file, :class => 'control-label'
-            = f.file_field :file, title: 'Choose', class: 'btn btn-warning'
+            = f.file_field :file, title: 'Choose', class: 'btn btn-warning', required: true
         .modal-footer
           %button.btn.btn-default.btn-lg{"data-dismiss" => "modal", :type => "button"} x
           = button_tag(:type => 'submit', :class => 'btn btn-primary btn-lg', data: { disable_with: "Please wait..." }) do
@@ -25,3 +25,7 @@
 
 :javascript
   $('input[type=file]').bootstrapFileInput();
+
+  $('#upload_form').on('shown.bs.modal', function() {
+    $('#new_image_file').formValidation('resetForm', true);
+  });
