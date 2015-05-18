@@ -9,13 +9,13 @@
         .modal-body
           = f.hidden_field :user_id, value: current_user.id
           .form-group
-            = f.label "Ticket Number", :class => 'control-label'
+            = f.label "Ticket Number*", :class => 'control-label'
             = f.text_field :ticket_number, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg", autofocus: true, required: true
           .form-group{:id => "event_code"}
-            = f.label :event_code, :class => 'control-label'
+            = f.label "Event Code*", :class => 'control-label'
             = f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{Image.event_codes.map(&:event_code)}"}, required: true
           .form-group
-            = f.label :file, :class => 'control-label'
+            = f.label "File*", :class => 'control-label'
             = f.file_field :file, title: 'Choose', class: 'btn btn-warning', required: true
         .modal-footer
           %button.btn.btn-default.btn-lg{"data-dismiss" => "modal", :type => "button"} x
@@ -26,6 +26,23 @@
 :javascript
   $('input[type=file]').bootstrapFileInput();
 
-  $('#upload_form').on('shown.bs.modal', function() {
-    $('#new_image_file').formValidation('resetForm', true);
+  //Required attribute fallback
+  function attributeSupported(attribute) {
+    return (attribute in document.createElement("input"));
+  }
+  function isSafariOnly() {
+    return navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+  }
+  $(function () {
+    $('#new_image_file').submit(function () {
+      if (!attributeSupported("required") || isSafariOnly()) {
+        $("#new_image_file [required]").each(function (index) {
+          if (!$(this).val()) {
+            alert("Please Fill In All Required Fields.");
+            return false;
+          }
+        });
+      }
+      return true;
+    });
   });
