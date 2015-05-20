@@ -5,7 +5,8 @@ class Image < ActiveRecord::Base
 #  establish_connection :jpegger
   establish_connection(
     :adapter  => 'sqlserver',
-    :host     => "71.41.52.5",
+#    :host     => "71.41.52.5",
+    :host     => "192.168.111.149",
     :username => "transact",
     :password => "ultr@5",
     :database => "Jpegger", 
