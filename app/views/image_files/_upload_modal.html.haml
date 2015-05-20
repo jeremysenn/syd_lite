@@ -10,10 +10,15 @@
           = f.hidden_field :user_id, value: current_user.id
           .form-group
             = f.label "Ticket Number*", :class => 'control-label'
-            = f.text_field :ticket_number, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg", autofocus: true, required: true
+            .input-group
+              = f.text_field :ticket_number, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg", autofocus: true, required: true
+              %span.input-group-addon 
+                %a{href: '#', onclick: "$('#image_file_ticket_number').val('');"}
+                  %i.fa.fa-remove.fa-lg
           .form-group{:id => "event_code"}
             = f.label "Event Code*", :class => 'control-label'
-            = f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{Image.event_codes.map(&:event_code)}"}, required: true
+            =# f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{Image.event_codes.map(&:event_code)}"}, required: true
+            = f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{LookupDef.image_event_codes.map(&:LookupDisplay)}"}, required: true
           .form-group
             = f.label "File*", :class => 'control-label'
             = f.file_field :file, title: 'Choose', class: 'btn btn-warning', required: true

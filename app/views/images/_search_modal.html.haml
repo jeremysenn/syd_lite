@@ -3,21 +3,27 @@
     .modal-dialog.modal-sm
       .modal-content
         .modal-body
-          %div.form-group{:id => "ticket_search"}
+          %div.form-group.has-feedback{:id => "ticket_search"}
             = label_tag "Ticket Number", nil, :class => 'control-label'
-            = search_field_tag "q[ticket_nbr_eq]", nil, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg"
-            %a{href: '#', onclick: "$(this).prev().val('');"}
-              %i.fa.fa-remove
+            .input-group
+              = search_field_tag "q[ticket_nbr_eq]", nil, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg"
+              %span.input-group-addon 
+                %a{href: '#', onclick: "$('#q_ticket_nbr_eq').val('');"}
+                  %i.fa.fa-remove.fa-lg
           .form-group
             = label_tag "Start Date", nil, :class => 'control-label'
-            = date_field_tag "q[sys_date_time_gteq]", nil, :placeholder => "Start Date", value: @start_date, class: "form-control input-lg"
-            %a{href: '#', onclick: "$(this).prev().val('');"}
-              %i.fa.fa-remove
+            .input-group
+              = date_field_tag "q[sys_date_time_gteq]", nil, :placeholder => "Start Date", value: @start_date, class: "form-control input-lg"
+              %span.input-group-addon 
+                %a{href: '#', onclick: "$('#q_sys_date_time_gteq').val('');"}
+                  %i.fa.fa-remove.fa-lg
           .form-group
             = label_tag "End Date", nil, :class => 'control-label'
-            = date_field_tag "q[sys_date_time_lteq]", nil, :placeholder => "End Date", value: @end_date, class: "form-control input-lg"
-            %a{href: '#', onclick: "$(this).prev().val('');"}
-              %i.fa.fa-remove
+            .input-group
+              = date_field_tag "q[sys_date_time_lteq]", nil, :placeholder => "End Date", value: @end_date, class: "form-control input-lg"
+              %span.input-group-addon 
+                %a{href: '#', onclick: "$('#q_sys_date_time_lteq').val('');"}
+                  %i.fa.fa-remove.fa-lg
           .form-group
             = label_tag :show_thumbnails, nil, :class => 'control-label'
             = hidden_field_tag :show_thumbnails, '0'
