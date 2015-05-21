@@ -82,6 +82,9 @@ gem 'sidekiq'
 # Authorization
 gem 'cancancan'
 
+# Needed for sidekiq  web interface 
+gem 'sinatra', :require => nil
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
