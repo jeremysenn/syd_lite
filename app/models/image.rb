@@ -3,15 +3,6 @@ class Image < ActiveRecord::Base
 #    :location, :branch_code, :event_code, :cust_nbr, :thumbnail, :cmdy_name, :cmdy_nbr
 
   establish_connection :jpegger
-#  establish_connection(
-#    :adapter  => 'sqlserver',
-#    :host     => "71.41.52.58",
-##    :host     => "192.168.111.149",
-#    :username => "transact",
-#    :password => "ultr@5",
-#    :database => "Jpegger", 
-#    :port => "1433"
-#  )
 
   self.primary_key = 'capture_seq_nbr'
   self.table_name = 'images_data'
