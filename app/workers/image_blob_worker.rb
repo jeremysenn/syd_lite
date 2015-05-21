@@ -28,6 +28,7 @@ class ImageBlobWorker
     image_file.blob_id = blob.id
 
     # Remove the newly uploaded file and versions once copied over to jpegger
+    sleep 2 # pause 2 seconds to allow for image_file to display before deleting
     image_file.remove_file!
 
     image_file.save
