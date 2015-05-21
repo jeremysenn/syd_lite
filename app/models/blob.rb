@@ -3,15 +3,6 @@ class Blob < ActiveRecord::Base
 #  attr_accessible :jpeg_image, :preview, :sys_date_time, :blob_id
 
   establish_connection :jpegger
-#  establish_connection(
-#    :adapter  => 'sqlserver',
-#    :host     => "71.41.52.58",
-##    :host     => "192.168.111.149",
-#    :username => "transact",
-#    :password => "ultr@5",
-#    :database => "Jpegger", 
-#    :port => "1433"
-#  )
   
   self.primary_key = 'blob_id'
 
