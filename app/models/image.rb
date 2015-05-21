@@ -2,16 +2,16 @@ class Image < ActiveRecord::Base
 #  attr_accessible :capture_seq_nbr, :ticket_nbr, :receipt_nbr, :blob_id, :camera_name, :camera_group, :sys_date_time,
 #    :location, :branch_code, :event_code, :cust_nbr, :thumbnail, :cmdy_name, :cmdy_nbr
 
-#  establish_connection :jpegger
-  establish_connection(
-    :adapter  => 'sqlserver',
-#    :host     => "71.41.52.5",
-    :host     => "192.168.111.149",
-    :username => "transact",
-    :password => "ultr@5",
-    :database => "Jpegger", 
-    :port => "1433"
-  )
+  establish_connection :jpegger
+#  establish_connection(
+#    :adapter  => 'sqlserver',
+#    :host     => "71.41.52.58",
+##    :host     => "192.168.111.149",
+#    :username => "transact",
+#    :password => "ultr@5",
+#    :database => "Jpegger", 
+#    :port => "1433"
+#  )
 
   self.primary_key = 'capture_seq_nbr'
   self.table_name = 'images_data'
