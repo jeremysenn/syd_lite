@@ -3,13 +3,13 @@ class ImageBlobWorker
   
   def perform(image_file_id)
     image_file = ImageFile.find(image_file_id)
+    image_file.update_attribute(:process, true)
+    image_file.file.recreate_versions!
 
     # Create blob
     if image_file.file.content_type.start_with? 'image'
-#      thumbnail_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:thumb).to_s).first.to_blob
-#      large_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:large).to_s).first.to_blob
-      thumbnail_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url.to_s).first.to_blob
-      large_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url.to_s).first.to_blob
+      thumbnail_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:thumb).to_s).first.to_blob
+      large_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:large).to_s).first.to_blob
     else # Assume only pdf's for now
       thumbnail_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:thumb).to_s).first.to_blob
       large_image_blob_data = open(image_file.file.path).read
@@ -30,7 +30,7 @@ class ImageBlobWorker
     image_file.blob_id = blob.id
 
     # Remove the newly uploaded file and versions once copied over to jpegger
-    sleep 2 # pause 2 seconds to allow for image_file to display before deleting
+#    sleep 2 # pause 2 seconds to allow for image_file to display before deleting
     image_file.remove_file!
 
     image_file.save

@@ -11,6 +11,8 @@ class ImageFile < ActiveRecord::Base
   validates :ticket_number, presence: true
   validates :event_code, presence: true
   
+  attr_accessor :process # Virtual attribute to determine if ready to process versions
+  
   
   #############################
   #     Instance Methods      #
