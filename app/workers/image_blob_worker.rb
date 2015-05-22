@@ -6,8 +6,10 @@ class ImageBlobWorker
 
     # Create blob
     if image_file.file.content_type.start_with? 'image'
-      thumbnail_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:thumb).to_s).first.to_blob
-      large_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:large).to_s).first.to_blob
+#      thumbnail_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:thumb).to_s).first.to_blob
+#      large_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:large).to_s).first.to_blob
+      thumbnail_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url.to_s).first.to_blob
+      large_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url.to_s).first.to_blob
     else # Assume only pdf's for now
       thumbnail_image_blob_data = Magick::Image::read(Rails.root.to_s + "/public" + image_file.file_url(:thumb).to_s).first.to_blob
       large_image_blob_data = open(image_file.file.path).read

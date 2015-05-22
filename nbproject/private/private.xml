@@ -41,18 +41,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/models/user.rb</file>
-            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/controllers/images_controller.rb</file>
             <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/workers/image_blob_worker.rb</file>
-            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/views/image_files/_upload_modal.html.haml</file>
             <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/controllers/image_files_controller.rb</file>
-            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/views/images/_search_modal.html.haml</file>
-            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/views/images/show.html.haml</file>
-            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/models/ability.rb</file>
+            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/models/image_file.rb</file>
             <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/models/image.rb</file>
-            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/views/images/index.html.haml</file>
-            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/views/image_files/show.html.haml</file>
-            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/models/lookup_def.rb</file>
+            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/Gemfile</file>
+            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/config/routes.rb</file>
+            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/config/application.yml</file>
+            <file>file:/Users/jeremysenn/RubyProjects/syd_lite/app/uploaders/image_file_uploader.rb</file>
         </group>
     </open-files>
 </project-private>
