@@ -25,7 +25,7 @@
     = render 'shared/footer'
     
 :javascript
-  var zoom = "#{(params[:controller]=='images' and params[:action]=='show')}"
+  var zoom = "#{((params[:controller]=='images' or params[:controller]=='image_files') and params[:action]=='show')}"
   if (zoom == "true") {
     $("#viewport").attr("content", "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0");
   }
