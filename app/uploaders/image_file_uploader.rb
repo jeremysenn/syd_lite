@@ -20,7 +20,8 @@ class ImageFileUploader < CarrierWave::Uploader::Base
   version :thumb, if: :ready_to_process? do
     process :rotate
     process :cover
-    process :resize_to_fit => [320, 240]
+#    process :resize_to_fit => [320, 240]
+    process :resize_to_fit => [320, 320]
     process :convert => :jpg
 
     def full_filename (for_file = model.source.file)
