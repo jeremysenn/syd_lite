@@ -10,8 +10,10 @@
           = f.hidden_field :user_id, value: current_user.id
           .form-group
             = f.label "Ticket Number*", :class => 'control-label'
-            .input-group
-              = f.text_field :ticket_number, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg", autofocus: true, required: true
+            -#
+              .input-group
+            = f.text_field :ticket_number, :placeholder => "Ticket Number", value: @ticket_number, class: "form-control input-lg", autofocus: true, required: true
+            -#
               %span.input-group-addon 
                 %a{href: '#', onclick: "$('#image_file_ticket_number').val('');"}
                   %i.fa.fa-remove.fa-lg
@@ -24,7 +26,7 @@
             = f.file_field :file, title: 'Choose', class: 'btn btn-warning', required: true
         .modal-footer
           %button.btn.btn-default.btn-lg{"data-dismiss" => "modal", :type => "button"} x
-          = button_tag(:type => 'submit', :class => 'btn btn-primary btn-lg', data: { disable_with: "Please wait..." }) do
+          = button_tag(:type => 'submit', :class => 'btn btn-primary btn-lg', id: "new_image_file_submit", data: { disable_with: "Please wait..." }) do
             Create
             %i.fa.fa-photo
 
@@ -50,4 +52,47 @@
       }
       return true;
     });
+  });
+
+  // Don't allow for form submit until form fields completed
+  $("#new_image_file_submit").attr("disabled", "disabled");
+  
+  // Make check if ticket number changes
+  $("#image_file_ticket_number").on("change", function() {
+    if($("#image_file_ticket_number").val() && $("#image_file_file").val() && $("#image_file_event_code").val()) {
+      $("#new_image_file_submit").removeAttr("disabled");
+    }
+    else {
+      $("#new_image_file_submit").attr("disabled", "disabled");
+    }
+  });
+
+  // Make check if file changes
+  $("#image_file_file").on("change", function() {
+    if($("#image_file_ticket_number").val() && $("#image_file_file").val() && $("#image_file_event_code").val()) {
+      $("#new_image_file_submit").removeAttr("disabled");
+    }
+    else {
+      $("#new_image_file_submit").attr("disabled", "disabled");
+    }
+  });
+
+  // Make check if event code changes
+  // If a typeahead value selected
+  $("#image_file_event_code").on('typeahead:selected', function() {
+    if($("#image_file_ticket_number").val() && $("#image_file_file").val() && $("#image_file_event_code").val()) {
+      $("#new_image_file_submit").removeAttr("disabled");
+    }
+    else {
+      $("#new_image_file_submit").attr("disabled", "disabled");
+    }
+  });
+  // If a typeahead value not selected
+  $("#image_file_event_code").on("change", function() {
+    if($("#image_file_ticket_number").val() && $("#image_file_file").val() && $("#image_file_event_code").val()) {
+      $("#new_image_file_submit").removeAttr("disabled");
+    }
+    else {
+      $("#new_image_file_submit").attr("disabled", "disabled");
+    }
   });
