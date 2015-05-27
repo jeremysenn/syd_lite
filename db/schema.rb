@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526171339) do
+ActiveRecord::Schema.define(version: 20150527172435) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 20150526171339) do
     t.string   "contract_number"
     t.boolean  "hidden",           default: false
     t.integer  "blob_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_settings", force: true do |t|
+    t.boolean  "show_thumbnails", default: false
+    t.string   "table_name",      default: "images"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

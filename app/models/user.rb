@@ -5,4 +5,23 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
        
   has_many :image_files
+  has_one :user_setting
+  
+  after_commit :create_user_settings, :on => :create
+  
+  #############################
+  #     Instance Methods      #
+  ############################
+  
+  def create_user_settings
+    UserSetting.create(user_id: id)
+  end
+  
+  def show_thumbnails?
+    user_setting.show_thumbnails?
+  end
+  
+  #############################
+  #     Class Methods      #
+  #############################
 end

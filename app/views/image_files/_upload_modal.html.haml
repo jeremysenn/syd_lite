@@ -19,8 +19,9 @@
                   %i.fa.fa-remove.fa-lg
           .form-group{:id => "event_code"}
             = f.label "Event Code*", :class => 'control-label'
+            = f.select :event_code, options_for_select(Image.event_codes.map(&:event_code)), {prompt: "Select event code"}, {:class => "form-control input-lg", required: true}
             =# f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{Image.event_codes.map(&:event_code)}"}, required: true
-            = f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{LookupDef.image_event_codes.map(&:LookupDisplay)}"}, required: true
+            =# f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{LookupDef.image_event_codes.map(&:LookupDisplay)}"}, required: true
           .form-group
             = f.label "File*", :class => 'control-label'
             = f.file_field :file, title: 'Choose', class: 'btn btn-warning', required: true
@@ -78,16 +79,6 @@
   });
 
   // Make check if event code changes
-  // If a typeahead value selected
-  $("#image_file_event_code").on('typeahead:selected', function() {
-    if($("#image_file_ticket_number").val() && $("#image_file_file").val() && $("#image_file_event_code").val()) {
-      $("#new_image_file_submit").removeAttr("disabled");
-    }
-    else {
-      $("#new_image_file_submit").attr("disabled", "disabled");
-    }
-  });
-  // If a typeahead value not selected
   $("#image_file_event_code").on("change", function() {
     if($("#image_file_ticket_number").val() && $("#image_file_file").val() && $("#image_file_event_code").val()) {
       $("#new_image_file_submit").removeAttr("disabled");

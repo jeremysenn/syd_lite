@@ -24,10 +24,6 @@
               %span.input-group-addon 
                 %a{href: '#', onclick: "$('#q_sys_date_time_lteq').val('');"}
                   %i.fa.fa-remove.fa-lg
-          .form-group
-            = label_tag :show_thumbnails, nil, :class => 'control-label'
-            = hidden_field_tag :show_thumbnails, '0'
-            = check_box_tag :show_thumbnails, 1, (params[:show_thumbnails] == '1' or session[:thumbnail_choice] == '1'), id: "show_thumbnails"
           - if @ticket_number.blank?
             .form-group
               = label_tag :one_image_per_ticket, "One result per ticket", :class => 'control-label'

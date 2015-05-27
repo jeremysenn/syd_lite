@@ -15,7 +15,8 @@
               %div.list_group
                 - unless @today == true or params[:q].blank? or @ticket_number.blank?
                   %a{href: image_path(image), class: "list-group-item", data: { disable_with: "Please wait..." }}
-                    = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive') if params[:show_thumbnails] == '1'
+                    - unless image.hidden? or not current_user.show_thumbnails?
+                      = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive')
                     = image.ticket_nbr
                     .pull-right
                       %i.fa.fa-chevron-right
@@ -28,8 +29,9 @@
                     %br/
                     %small.text-muted= image.sys_date_time.strftime("%-m/%-d/%y %l:%M %p")
                 - else
-                  %a{href: images_path("q[ticket_nbr_eq]" => image.ticket_nbr, :show_thumbnails => params[:show_thumbnails]), class: "list-group-item", data: { disable_with: "Please wait..." }}
-                    = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive') if params[:show_thumbnails] == '1'
+                  %a{href: images_path("q[ticket_nbr_eq]" => image.ticket_nbr), class: "list-group-item", data: { disable_with: "Please wait..." }}
+                    - unless image.hidden? or not current_user.show_thumbnails?
+                      = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive')
                     = image.ticket_nbr
                     .pull-right
                       %i.fa.fa-chevron-right
@@ -46,7 +48,7 @@
     .text-center
       %div{id: 'endless_page'}
         %p= image_tag("ajax-loader.gif", :id => "spinner", :alt => "Loading ...", style: "display:none;")
-        %p= link_to 'Load more ...', images_path(:page => @images.next_page, :q => params[:q], :show_thumbnails => params[:show_thumbnails], :one_image_per_ticket => params[:one_image_per_ticket]), :class => 'load-more-images btn btn-default', :remote => true, :onclick => "$(this).hide(); $('#spinner').show();" if @images.next_page
+        %p= link_to 'Load more ...', images_path(:page => @images.next_page, :q => params[:q], :one_image_per_ticket => params[:one_image_per_ticket]), :class => 'load-more-images btn btn-default', :remote => true, :onclick => "$(this).hide(); $('#spinner').show();" if @images.next_page
   =# paginate @images
   
 = render partial: "search_modal"

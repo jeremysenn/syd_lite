@@ -43,5 +43,12 @@ class Ability
     end
     can :create, ImageFile
     
+    # UserSettings
+    ############
+    can :manage, UserSetting do |user_setting|
+      user_setting.user_id == user.id
+    end
+    can :create, UserSetting
+    
   end
 end
