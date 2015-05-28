@@ -9,7 +9,7 @@ class CreateShipmentFiles < ActiveRecord::Migration
       t.string :branch_code
       t.string :location
       t.string :event_code
-      t.integer :image_id
+      t.integer :shipment_id
       t.string :container_number
       t.string :booking_number
       t.string :contract_number
