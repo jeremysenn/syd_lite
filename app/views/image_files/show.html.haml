@@ -22,9 +22,7 @@
             .pull-right
               = "#{@image_file.created_at.strftime("%-m/%-d/%y %l:%M %p")}"
 
-= render partial: "images/search_modal"
-= render partial: "image_files/upload_modal"
-= render partial: "shared/search_footer_navbar", locals: {title: "Images"}
+= render partial: "shared/footer_navbar", locals: {title: "Images"}
 
 
 -#

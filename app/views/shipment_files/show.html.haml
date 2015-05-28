@@ -22,9 +22,7 @@
             .pull-right
               = "#{@shipment_file.created_at.strftime("%-m/%-d/%y %l:%M %p")}"
 
-= render partial: "shipments/search_modal"
-= render partial: "shipment_files/upload_modal"
-= render partial: "shared/search_footer_navbar", locals: {title: "Images"}
+= render partial: "shared/footer_navbar", locals: {title: "Shipments"}
 
 
 -#

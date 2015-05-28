@@ -2,7 +2,6 @@
   = render partial: "shared/search_navbar", locals: {title: Date.today.strftime("%-m/%-d/%y")}
 - else
   = render partial: "shared/search_navbar", locals: {title: "#{@ticket_number.blank? ? 'Search' : @ticket_number}"}
-= render partial: "search_modal"
 
 .container
   - if @shipments.blank?
@@ -51,5 +50,4 @@
         %p= link_to 'Load more ...', shipments_path(:page => @shipments.next_page, :q => params[:q], :one_shipment_per_ticket => params[:one_shipment_per_ticket]), :class => 'load-more-shipments btn btn-default', :remote => true, :onclick => "$(this).hide(); $('#spinner').show();" if @shipments.next_page
   =# paginate @shipments
   
-= render partial: "shipment_files/upload_modal"
-= render partial: "shared/search_footer_navbar", locals: {title: "Shipments"}
+= render partial: "shared/footer_navbar", locals: {title: "Shipments"}

@@ -1,5 +1,4 @@
 = render partial: "shared/search_navbar", locals: {title: "Settings"}
-= render partial: "images/search_modal"
 
 .container
   %div.row
@@ -33,5 +32,4 @@
           %div.list-group-item
             = link_to "New", new_lookup_def_path, class: 'btn btn-primary btn-lg btn-block', data: { disable_with: "Please wait ..." }
 
-= render partial: "shared/search_footer_navbar", locals: {title: "Settings"}
-= render partial: "image_files/upload_modal"
+= render partial: "shared/footer_navbar", locals: {title: "Settings"}
