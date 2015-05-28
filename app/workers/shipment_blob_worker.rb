@@ -2,7 +2,7 @@ class ShipmentBlobWorker
   include Sidekiq::Worker
   
   def perform(shipment_file_id)
-    shipment_file = ImageFile.find(shipment_file_id)
+    shipment_file = ShipmentFile.find(shipment_file_id)
     shipment_file.update_attribute(:process, true)
     shipment_file.file.recreate_versions!
 
