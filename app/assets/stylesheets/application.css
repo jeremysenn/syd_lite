@@ -13,6 +13,7 @@
  *= stub twbs-variables
  *= require twbs
  *= require bootstrap-typeahead-rails
+ *= require checkbox-x.min.css
  *= require_tree .
  *= require_self
  */

@@ -18,6 +18,7 @@ class ImagesController < ApplicationController
       ### Only show one image per ticket by default, unless there is a ticket number being searched ###
       unless @ticket_number.blank?
         params[:one_image_per_ticket] == '0'
+        @one_image_per_ticket = '0'
         @images = search.result.page(params[:page]).per(6)
       else
         if params[:one_image_per_ticket] == '1' or not params[:one_image_per_ticket] == '0'

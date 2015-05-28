@@ -15,8 +15,7 @@
               %div.list_group
                 - unless @today == true or params[:q].blank? or @ticket_number.blank?
                   %a{href: image_path(image), class: "list-group-item", data: { disable_with: "Please wait..." }}
-                    - unless image.hidden? or not current_user.show_thumbnails?
-                      = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive')
+                    = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive') if current_user.show_thumbnails?
                     = image.ticket_nbr
                     .pull-right
                       %i.fa.fa-chevron-right
@@ -30,8 +29,7 @@
                     %small.text-muted= image.sys_date_time.strftime("%-m/%-d/%y %l:%M %p")
                 - else
                   %a{href: images_path("q[ticket_nbr_eq]" => image.ticket_nbr), class: "list-group-item", data: { disable_with: "Please wait..." }}
-                    - unless image.hidden? or not current_user.show_thumbnails?
-                      = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive')
+                    = image_tag(show_preview_image_image_path(image), alt: image.id, class: 'thumbnail img-responsive') if current_user.show_thumbnails?
                     = image.ticket_nbr
                     .pull-right
                       %i.fa.fa-chevron-right

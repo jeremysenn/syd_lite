@@ -17,4 +17,5 @@
 //= require turbolinks
 //= require jquery.inview.min.js
 //= require bootstrap-typeahead-rails
+//= require checkbox-x.min.js
 //= require_tree .
