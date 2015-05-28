@@ -1,0 +1,19 @@
+= render partial: "shared/search_navbar", locals: {title: "#{truncate(@lookup_def.LookupValue, length: 8)}"}
+= render partial: "images/search_modal"
+
+.container
+  %div.row
+    .col-xs-12.col-sm-6.col-md-offset-3
+      %div.panel.panel-default
+        %div.list_group
+          %div.list-group-item
+            %strong= "Event Code:"
+            .pull-right
+              = @lookup_def.LookupValue
+          %div.list-group-item
+            %strong= "Table:"
+            .pull-right
+              = @lookup_def.tableName
+
+= render partial: "shared/search_footer_navbar", locals: {title: "Settings"}
+= render partial: "image_files/upload_modal"

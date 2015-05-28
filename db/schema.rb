@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527172435) do
+ActiveRecord::Schema.define(version: 20150528190948) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -47,6 +47,25 @@ ActiveRecord::Schema.define(version: 20150527172435) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "image_files", force: true do |t|
+    t.string   "name"
+    t.string   "file"
+    t.integer  "user_id"
+    t.string   "ticket_number"
+    t.string   "customer_number"
+    t.string   "branch_code"
+    t.string   "location"
+    t.string   "event_code"
+    t.integer  "image_id"
+    t.string   "container_number"
+    t.string   "booking_number"
+    t.string   "contract_number"
+    t.boolean  "hidden",           default: false
+    t.integer  "blob_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shipment_files", force: true do |t|
     t.string   "name"
     t.string   "file"
     t.integer  "user_id"

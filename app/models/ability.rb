@@ -43,12 +43,35 @@ class Ability
     end
     can :create, ImageFile
     
+    # Shipments
+    ############
+    can :manage, Shipment do |shipment|
+#      image.user_id == user.id
+    end
+    can :create, Shipment
+
+    # ShipmentFiles
+    ############
+    can :manage, ShipmentFile do |shipment_file|
+      shipment_file.user_id == user.id
+    end
+    can :create, ShipmentFile
+    
     # UserSettings
     ############
     can :manage, UserSetting do |user_setting|
       user_setting.user_id == user.id
     end
     can :create, UserSetting
+    
+    # LookupDefs
+    ############
+    can :manage, LookupDef do |lookup_def|
+#      lookup_def.user_id == user.id
+    end
+    can :create, LookupDef
+    
+    
     
   end
 end

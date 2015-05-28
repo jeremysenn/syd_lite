@@ -16,6 +16,6 @@
               %i.fa.fa-share.fa-lg
               = "Share" unless mobile_device?
         .col-xs-4.col-sm-4
-          %a{href: images_path(today: true)}
+          %a{href: "#{current_user.images_table? ? images_path(today: true) : shipments_path(today: true)}"}
             %i.fa.fa-calendar-o.fa-lg
             = "Today" unless mobile_device?

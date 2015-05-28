@@ -19,9 +19,11 @@
                   %i.fa.fa-remove.fa-lg
           .form-group{:id => "event_code"}
             = f.label "Event Code*", :class => 'control-label'
-            = f.select :event_code, options_for_select(Image.event_codes.map(&:event_code)), {prompt: "Select event code"}, {:class => "form-control input-lg", required: true}
+            =# f.select :event_code, options_for_select(Image.event_codes.map(&:event_code)), {prompt: "Select event code"}, {:class => "form-control input-lg", required: true}
             =# f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{Image.event_codes.map(&:event_code)}"}, required: true
             =# f.text_field :event_code, :placeholder => "Event Code", class: "form-control typeahead input-lg", data: { events: "#{LookupDef.image_event_codes.map(&:LookupDisplay)}"}, required: true
+            =# f.select :event_code, options_for_select(Image.event_codes.map(&:event_code)), {prompt: "Select event code"}, {:class => "form-control input-lg", required: true}
+            = f.select :event_code, options_for_select(LookupDef.image_event_codes.map(&:LookupValue)), {prompt: "Select event code"}, {:class => "form-control input-lg", required: true}
           .form-group
             = f.label "File*", :class => 'control-label'
             = f.file_field :file, title: 'Choose', class: 'btn btn-warning', required: true

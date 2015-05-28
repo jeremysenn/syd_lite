@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
     user_setting.show_thumbnails?
   end
   
+  def images_table?
+    user_setting.table_name == "images"
+  end
+  
+  def shipments_table?
+    user_setting.table_name == "shipments"
+  end
+  
   #############################
   #     Class Methods      #
   #############################

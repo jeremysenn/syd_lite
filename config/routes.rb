@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :lookup_defs
+  
   resources :user_settings
   
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -13,12 +15,21 @@ Rails.application.routes.draw do
   ### End sidekiq stuff ###
   
   resources :image_files
+  
+  resources :shipment_files
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   
   resources :images do
+    member do
+      get 'show_jpeg_image'
+      get 'show_preview_image'
+    end
+  end
+  
+  resources :shipments do
     member do
       get 'show_jpeg_image'
       get 'show_preview_image'

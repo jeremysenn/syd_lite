@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show_jpeg_image, :show_preview_image]
+  before_filter :authenticate_user!#, :except => [:show_jpeg_image, :show_preview_image]
   before_action :set_image, only: [:show, :edit, :update, :show_jpeg_image, :show_preview_image, :destroy]
   
 #  load_and_authorize_resource
@@ -86,6 +86,6 @@ class ImagesController < ApplicationController
     end
 
     def image_params
-      params.require(:image).permit(:amount, :to_account, :from_account, :fee, :customer_id)
+      params.require(:image).permit(:ticket_nbr)
     end
 end

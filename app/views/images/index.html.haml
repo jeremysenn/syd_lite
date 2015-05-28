@@ -2,6 +2,8 @@
   = render partial: "shared/search_navbar", locals: {title: Date.today.strftime("%-m/%-d/%y")}
 - else
   = render partial: "shared/search_navbar", locals: {title: "#{@ticket_number.blank? ? 'Search' : @ticket_number}"}
+= render partial: "search_modal"
+
 .container
   - if @images.blank?
     .jumbotron
@@ -49,6 +51,5 @@
         %p= link_to 'Load more ...', images_path(:page => @images.next_page, :q => params[:q], :one_image_per_ticket => params[:one_image_per_ticket]), :class => 'load-more-images btn btn-default', :remote => true, :onclick => "$(this).hide(); $('#spinner').show();" if @images.next_page
   =# paginate @images
   
-= render partial: "search_modal"
 = render partial: "image_files/upload_modal"
 = render partial: "shared/search_footer_navbar", locals: {title: "Images"}

@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :mobile_device?
   
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+  
 end

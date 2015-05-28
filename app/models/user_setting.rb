@@ -7,6 +7,13 @@ class UserSetting < ActiveRecord::Base
   #     Instance Methods      #
   ############################
   
+  def images?
+    table_name == "images"
+  end
+  
+  def shipments
+    table_name == "shipments"
+  end
   
   #############################
   #     Class Methods      #

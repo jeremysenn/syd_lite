@@ -12,6 +12,7 @@ class UserSettingsController < ApplicationController
   # GET /user_settings/1
   # GET /user_settings/1.json
   def show
+    @lookup_defs = @user_setting.images? ? LookupDef.image_event_codes : LookupDef.shipment_event_codes
   end
 
   # GET /user_settings/new
