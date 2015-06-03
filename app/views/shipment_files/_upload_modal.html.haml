@@ -33,59 +33,62 @@
             Create
             %i.fa.fa-photo
 
-:javascript
+%script
   $('input[type=file]').bootstrapFileInput();
+-#
+  :javascript
+    $('input[type=file]').bootstrapFileInput();
 
-  //Required attribute fallback
-  function attributeSupported(attribute) {
-    return (attribute in document.createElement("input"));
-  }
-  function isSafariOnly() {
-    return navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
-  }
-  $(function () {
-    $('#new_shipment_file').submit(function () {
-      if (!attributeSupported("required") || isSafariOnly()) {
-        $("#new_shipment_file [required]").each(function (index) {
-          if (!$(this).val()) {
-            alert("Please Fill In All Required Fields.");
-            return false;
-          }
-        });
-      }
-      return true;
+    //Required attribute fallback
+    function attributeSupported(attribute) {
+      return (attribute in document.createElement("input"));
+    }
+    function isSafariOnly() {
+      return navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+    }
+    $(function () {
+      $('#new_shipment_file').submit(function () {
+        if (!attributeSupported("required") || isSafariOnly()) {
+          $("#new_shipment_file [required]").each(function (index) {
+            if (!$(this).val()) {
+              alert("Please Fill In All Required Fields.");
+              return false;
+            }
+          });
+        }
+        return true;
+      });
     });
-  });
 
-  // Don't allow for form submit until form fields completed
-  $("#new_shipment_file_submit").attr("disabled", "disabled");
-  
-  // Make check if ticket number changes
-  $("#shipment_file_ticket_number").on("change", function() {
-    if($("#shipment_file_ticket_number").val() && $("#shipment_file_file").val() && $("#shipment_file_event_code").val()) {
-      $("#new_shipment_file_submit").removeAttr("disabled");
-    }
-    else {
-      $("#new_shipment_file_submit").attr("disabled", "disabled");
-    }
-  });
+    // Don't allow for form submit until form fields completed
+    $("#new_shipment_file_submit").attr("disabled", "disabled");
 
-  // Make check if file changes
-  $("#shipment_file_file").on("change", function() {
-    if($("#shipment_file_ticket_number").val() && $("#shipment_file_file").val() && $("#shipment_file_event_code").val()) {
-      $("#new_shipment_file_submit").removeAttr("disabled");
-    }
-    else {
-      $("#new_shipment_file_submit").attr("disabled", "disabled");
-    }
-  });
+    // Make check if ticket number changes
+    $("#shipment_file_ticket_number").on("change", function() {
+      if($("#shipment_file_ticket_number").val() && $("#shipment_file_file").val() && $("#shipment_file_event_code").val()) {
+        $("#new_shipment_file_submit").removeAttr("disabled");
+      }
+      else {
+        $("#new_shipment_file_submit").attr("disabled", "disabled");
+      }
+    });
 
-  // Make check if event code changes
-  $("#shipment_file_event_code").on("change", function() {
-    if($("#shipment_file_ticket_number").val() && $("#shipment_file_file").val() && $("#shipment_file_event_code").val()) {
-      $("#new_shipment_file_submit").removeAttr("disabled");
-    }
-    else {
-      $("#new_shipment_file_submit").attr("disabled", "disabled");
-    }
-  });
+    // Make check if file changes
+    $("#shipment_file_file").on("change", function() {
+      if($("#shipment_file_ticket_number").val() && $("#shipment_file_file").val() && $("#shipment_file_event_code").val()) {
+        $("#new_shipment_file_submit").removeAttr("disabled");
+      }
+      else {
+        $("#new_shipment_file_submit").attr("disabled", "disabled");
+      }
+    });
+
+    // Make check if event code changes
+    $("#shipment_file_event_code").on("change", function() {
+      if($("#shipment_file_ticket_number").val() && $("#shipment_file_file").val() && $("#shipment_file_event_code").val()) {
+        $("#new_shipment_file_submit").removeAttr("disabled");
+      }
+      else {
+        $("#new_shipment_file_submit").attr("disabled", "disabled");
+      }
+    });
